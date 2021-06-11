@@ -240,7 +240,7 @@ const LeftNav = ({ open }) => {
             <label onClick={() => openMenu(3)}>Le financement ▼</label>
             <div className={`w-44 sub-nav bg-pblue ${isOpenArray[3] ? 'open' : 'close'}`}>
               <div className="hover-sub-trigger relative">
-                <Link href="/don" >
+                <Link href="https://www.helloasso.com/associations/union-directrice-diocesaine-des-associations-russes-orthodoxes-en-europe-occidentale/formulaires/4" >
                   <a className="ml-1 block text-teal-200  ">
                     Faire un don
                   </a>

@@ -14,6 +14,7 @@ const ecole = () => {
                     </p>
                     <p className='pb-96'>
                     </p>
+                    
                 </main>
             </div>
         </div>

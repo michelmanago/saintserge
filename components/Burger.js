@@ -4,13 +4,17 @@ import LeftNav from './LeftNav';
 
 
 const StyledBurger = styled.div`
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 2.5rem;
   position: fixed;
   top: 15px;
   left: 20px;
   z-index: 20;
   display: none;
+  background-color: #3C4A87;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
 
   @media (max-width: 768px) {
     display: flex;
