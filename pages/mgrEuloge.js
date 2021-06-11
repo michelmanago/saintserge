@@ -13,7 +13,7 @@ const mgrEuloge = () => {
             <img className="flex sm:items-center float-left w-1/4 mr-1"
                 src="../img/Metropolite_Euloge.jpg" alt="Metropolite_Euloge" />
                 <p className="pb-2">
-                Texte et photo ci jointe
+                
 Après avoir achevé ses études secondaires à l’école ecclésiastique de Bélev et au séminaire de Toula (180 km au sud de Moscou), Basile Guéorguievski entra à l’Académie de théologie de Moscou. Ayant terminé l’Académie en 1892, Basile fut employé comme précepteur dans la famille Lopoukhine à Moscou. Six mois plus tard, en 1893, il obtenait le poste d’inspecteur adjoint de l’école diocésaine d’Efrémov (120 km au sud de Toula).
 
 Le 3 février 1895, à l’âge de 27 ans, il reçut la tonsure monastique sous le nom d’Euloge. Le 12 février il fut ordonné hiéromoine, puis nommé professeur de grec au séminaire de Toula. L’année suivante, il est nommé inspecteur au séminaire de Vladimir. Deux ans plus tard, en 1897, il est nommé recteur du séminaire de Kholm (Pologne sous domination russe). Enfin, le 12 janvier 1903, le hiéromoine Euloge est sacré évêque de Lublin, vicaire du diocèse de Kholm-Varsovie. En 1905, les vicariats de Lublin et Sedlets s’unirent en un seul diocèse, avec siège épiscopal à Kholm et avec l’évêque Euloge à sa tête.
