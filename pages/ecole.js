@@ -10,7 +10,7 @@ const ecole = () => {
                 <main className="bg-white pt-4 sm:px-48">
                     <h1> L'école théologique de Paris</h1>
                     <p className="pb-2">
-                        Page a rempli
+                    Contenu à fournir par la colline st serge
                     </p>
                     <p className='pb-96'>
                     </p>

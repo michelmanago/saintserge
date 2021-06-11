@@ -11,8 +11,10 @@ const ito = () => {
     <main className="bg-white pt-4 sm:px-48">
     <h1>ITO</h1>
         <p className="pb-2">
-            Page a rempli
+        Contenu à fournir par la colline st serge
 </p>
+<p className='pb-64'>
+                        </p>
     </main>
 </div>
 </div>

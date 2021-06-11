@@ -11,6 +11,10 @@ body {
   background-color: #F2B277;
 }
 
+h1 {
+  @apply text-3xl;
+}
+
 a {
   color: white;
   text-underline-position: auto;

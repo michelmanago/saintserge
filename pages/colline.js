@@ -14,7 +14,9 @@ const colline = () => {
                     <h1>La colline</h1>
                     <h1>Présence actuelle</h1>
                         <p className="pb-2">
-                            Page a rempli 
+                        Contenu à fournir par la colline st serge
+                        </p>
+                        <p className='pb-64'>
                         </p>
                     </main>
                 </div>
