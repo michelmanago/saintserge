@@ -1,17 +1,14 @@
 import React from 'react';
-import Logo from "../components/Logo";
 import Header from "../components/Header";
 
-
-const colline = () => {
-  return (
-    <div className="colline">
-      <Header />
-      <div className="actuelle">
+const actuelle = () => {
+    return (
+       
+        <div className="actuelle">
+             <Header />
             <div className="bg-pyellow">
                 <div className="container sm:mx-auto bg-pwhite max-w-screen-xl">
                     <main className="bg-white pt-4 sm:px-48">
-                    <h1>La colline</h1>
                     <h1>Présence actuelle</h1>
                         <p className="pb-2">
                             Page a rempli 
@@ -20,9 +17,7 @@ const colline = () => {
                 </div>
             </div>
         </div>
-      
-    </div>
-  );
+    );
 };
 
-export default colline;
+export default actuelle;

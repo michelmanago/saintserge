@@ -1,11 +1,16 @@
 import React from "react";
-import Navigation from "../components/Navigation";
-
+import Image from 'next/image'
+import Bandeau from "../components/Bandeau";
+import Logo from "../components/Logo";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div className="home">
-      <Navigation />
+      <Logo/>
+      <Navbar />
+      <Bandeau/>
+     
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const travaux = () => {
+const liturgique = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const travaux = () => {
     );
 };
 
-export default travaux;
+export default liturgique;
