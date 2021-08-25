@@ -1,13 +1,26 @@
+const defaultTheme = require("tailwindcss/defaultTheme")
+
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+
+      // Fonts
+      fontFamily: {
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
+        serif: ['"Cormorant Garamond"', ...defaultTheme.fontFamily.serif],
+      },
+
+      // Colors
       colors: {
-        pblue: "#3C4A87",
-        pred: "#DB371C",
-        pwhite: "#0D0B0A",
         pyellow: "#F2B277",
+        pblue: "#3C4A87",
+
+        pred: "#9C3D36",
+        pwhite: "#F4F0E6",
+        plightmaroon: "#BBA477",
+        pmaroon: "#513F33",
       }
     },
   },
