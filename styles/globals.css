@@ -5,49 +5,13 @@
 html,
 body {
   padding: 0;
-  background-color: #F2B277;
   @apply font-sans;
 }
 
-h1 {
-  @apply text-3xl;
-}
-
-a {
-  color: white;
-  text-underline-position: auto;
-
-}
-
-label{
-  color: white;
-  text-decoration: none;
+body{
+  @apply bg-pwhite;
 }
 
 * {
   box-sizing: border-box;
-}
-
-.hover-trigger .hover-target {
-  display: none;
-}
-
-.hover-trigger:hover .hover-target {
-  display: block;
-}
-
-.hover-sub-trigger .hover-sub-target {
-  display: none;
-}
-
-.hover-sub-trigger:hover .hover-sub-target {
-  display: block;
-}
-
-.open {
-  display: block;
-}
-
-.close {
-  display: none;
 }
