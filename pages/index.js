@@ -12,11 +12,16 @@ import { getMenu } from '../model/menu'
 
 // styles
 import styles from '../styles/pages/home.module.css'
+import { getServerImageEndpoint } from '../utils/utils-serveur-image'
 
 export default function Home({menu}) {
 
   const router = useRouter()
   const { locale, locales, defaultLocale } = router
+
+  console.log({
+    ok: getServerImageEndpoint()
+  })
 
   return (
     <div className={styles.container}>
