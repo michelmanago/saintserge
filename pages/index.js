@@ -17,11 +17,7 @@ import { getServerImageEndpoint } from '../utils/utils-serveur-image'
 export default function Home({menu}) {
 
   const router = useRouter()
-  const { locale, locales, defaultLocale } = router
-
-  console.log({
-    ok: getServerImageEndpoint()
-  })
+  const { locale } = router
 
   return (
     <div className={styles.container}>
