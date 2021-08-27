@@ -25,19 +25,19 @@ export default function Header({ menu, translations }) {
         <header className="bg-pwhite">
             <div className="container max-w-screen-xl bg-white sm:mx-auto">
 
-                <div className="flex items-center border">
-
+                <div className="flex items-center  border">
                     {/* Logo */}
-                    <div className="w-1/5 md:w-1/4">
+                    <div className="min-w-min w-1/5 md:w-1/4 flex-shrink-0">
                         <svg fill="#bba477" xmlns="http://www.w3.org/2000/svg">
-                            <path xmlns="http://www.w3.org/2000/svg" d="M134.065,67.032H0A66.719,66.719,0,0,1,11.448,29.554,67.228,67.228,0,0,1,40.94,5.268a66.944,66.944,0,0,1,63.571,6.18A67.228,67.228,0,0,1,128.8,40.941a66.615,66.615,0,0,1,5.268,26.091Z" transform="translate(163.68 47.672)"/>
+                            <path xmlns="http://www.w3.org/2000/svg" d="M134.065,67.032H0A66.719,66.719,0,0,1,11.448,29.554,67.228,67.228,0,0,1,40.94,5.268a66.944,66.944,0,0,1,63.571,6.18A67.228,67.228,0,0,1,128.8,40.941a66.615,66.615,0,0,1,5.268,26.091Z" transform="translate(80 45)"/>
+                            <text xmlns="http://www.w3.org/2000/svg" fontSize="19px" letterSpacing=".113em" fill="#513f33" className="font-serif font-bold" transform="translate(10 136.249)"><tspan x="" y="0">LA COLLINE SAINT-SERGE</tspan></text>
                         </svg>
                     </div>
 
                     {/* Title */}
-                    <div className="w-4/5 md:w-3/4">
-                        <div className="w-4/5 md:w-3/4 ml-2 text-xl md:text-4xl font-bold text-pred font-logotitle">
-                            La colline Saint Serge
+                    <div className="">
+                        <div className="ml-2 text-xl md:text-4xl font-bold text-pred font-logotitle">
+                            Fondation pour la restauration de la colline Saint-Serge à Paris
                         </div>
                     </div>
 
