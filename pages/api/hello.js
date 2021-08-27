@@ -1,5 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default (req, res) => {
-  res.status(200).json({ name: 'John Doe' })
-}
+import getTests from '../../model/test';
+
+export default async (req, res) => {
+    const testData = await getTests();
+    res.statusCode = 200;
+    res.json({name: 'John Doe', testData: testData});
+};

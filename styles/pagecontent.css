@@ -1,0 +1,69 @@
+.pagecontent h1 {
+    @apply font-serif;
+    font-weight: 700;
+    @apply text-2xl;
+    @apply sm:text-3xl;
+    padding-bottom: 9px;
+}
+
+.pagecontent h2 {
+    @apply font-serif;
+    font-weight: 700;
+    @apply text-xl;
+    @apply sm:text-2xl;
+    padding-top: 6px;
+    padding-bottom: 9px;
+}
+
+.pagecontent ul {
+    font-size: 1.125rem;
+    list-style: disc;
+    padding-bottom: 6px;
+}
+
+.pagecontent ol {
+    font-size: 1.125rem;
+    list-style: decimal;
+    padding-bottom: 6px;
+    padding-left: 18px;
+}
+
+.pagecontent li {
+    line-height: 1.75rem;
+    padding-bottom: 6px;
+    padding-left: 18px;
+}
+
+.pagecontent ol li {
+    @apply text-justify;
+    font-size: 1.125rem;
+}
+
+.pagecontent p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    padding-bottom: 6px;
+}
+
+.pagecontent .pointille {
+    text-decoration: underline dotted;
+}
+
+.video-modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Images */
+
+.pagecontent .page__imgfloatright{
+    @apply float-right clear-right md:w-1/3 w-full p-0 md:mt-2 md:ml-2;
+}
+
+
+.pagecontent .page__imgaligncenter{
+    @apply md:w-2/3 w-full mx-auto;
+}
+
+.pagecontent .page__imgfloatleft{
+    @apply float-left clear-left md:w-1/3 w-full p-0 md:mr-2 md:mt-2;
+}

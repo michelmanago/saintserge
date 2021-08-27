@@ -19,9 +19,6 @@
 
 }
 
-.headerNavLink{
-}
-
 .headerNavLink button, .headerNavLink a{
     text-align: left;
 }
@@ -30,34 +27,69 @@
     text-decoration: underline;
 }
 
-.headerNavLink:hover .headerSubNav{
-    display: block;
-}
 
-.headerNav{
-    position: absolute;
-    top: 65px;
-    left: 0;
-    width: 90vw;
-}
+
 
 /** From md **/
-@media (min-width: 767px) { 
+
+/* Nav ul */
+.headerNav{
+    position: absolute;
+    top: 40px;
+    left: -1.25rem;
+    transition: ease-out .3s;
+    transition-property: transform;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 80%;
+    user-select: none;
+}
+
+@media (min-width: 768px) { 
 
     .headerNav{
-
-        width: 450px
-
+        position: relative;
+        left: 0;
+        top: 0;
+        flex-direction: row; 
+        width: 100%;
     }
 }
 
+
+
+/* Link */
+
+.headerSubLink, .headerLink{
+    height: 50px;
+
+}
+
+.headerLink{
+    position: relative;
+}
+
+/* Sub nav */
+
 .headerSubNav{
     display: none;
-    /* width: 250px; */
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .4);
+    /* left: 100%; */
 }
 
-.headerSubNav li:before{
-
+/* Sub link */
+.headerSubLink{
+    display: flex;
+    align-items:  center;
 }
 
+@media (min-width: 768px) { 
 
+    .headerSubNav{
+        min-width: 350px;
+        position: absolute;
+    }
+}
