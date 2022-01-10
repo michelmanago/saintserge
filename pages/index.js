@@ -22,7 +22,7 @@ export default function Home({menu}) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Exposition du centenaire</title>
+        <title>Colline Saint Serge</title>
         
       </Head>
 

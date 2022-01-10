@@ -37,7 +37,7 @@ export default function Header({ menu, translations }) {
                     {/* Title */}
                     <div className="">
                         <div className="ml-2 text-xl md:text-4xl mb-5 lg:mb-0 text-center lg:text-left font-bold text-pred font-logotitle">
-                            Fondation pour la restauration de la colline Saint-Serge à Paris
+                            Association pour la restauration de la colline Saint-Serge à Paris
                         </div>
                     </div>
 
