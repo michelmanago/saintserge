@@ -214,6 +214,7 @@ export async function getAllPages(locale, category) {
 export async function getLastPages(locale, category, nb_last) {
   const pages = await selectAllPages(locale, category);
 
+  if (!pages) return null;
   return pages
     .reverse()
     .slice(Math.max(pages.length - nb_last, 0))

@@ -58,14 +58,16 @@ export async function getStaticProps(context) {
 
   let pages = await getLastPages(context.defaultLocale, "articles", 9);
 
-  for (let article of pages) {
-    if (article.bandeau_id) {
-      let media = await getSingleMedia(article.bandeau_id);
-      article.image = getMediaLink(media.public_path);
+  if (pages) {
+    for (let article of pages) {
+      if (article.bandeau_id) {
+        let media = await getSingleMedia(article.bandeau_id);
+        article.image = getMediaLink(media.public_path);
+      }
     }
   }
 
-  console.log("articles: ", pages);
+  //console.log("articles: ", pages);
 
   return {
     props: {
