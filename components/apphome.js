@@ -12,9 +12,6 @@ export default function AppHome () {
  
                     <p className="pb-2">{t("home:paragraph_1")}</p>
                     <p className="pb-2">{t("home:paragraph_2")}</p>
-                    <p className="pb-2">{t("home:paragraph_3")}</p>
-                    <p className="pb-2">{t("home:paragraph_4")}</p>
-                    <p className="pb-2">{t("home:paragraph_5")}</p>
                 </main>
             </div>
         </div>
