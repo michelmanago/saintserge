@@ -3,9 +3,10 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useRef, useState} from 'react';
 import Header from '../../components/header/header';
+import {getMenu} from '../../model/menu';
 import {getUserByHash} from '../../model/user';
 
-export default function NewPassword({hash}) {
+export default function NewPassword({menu, hash}) {
     const router = useRouter();
     const [status, setStatus] = useState('main');
     const [message, setMessage] = useState();
@@ -59,7 +60,7 @@ export default function NewPassword({hash}) {
                 <title>{title}</title>
             </Head>
             <div className="bg-pwhite">
-                <Header currentLanguage={locale} currentPage={''} />
+                <Header currentLanguage={locale} currentPage={''} menu={menu.data} />
                 <div className="flex flex-col bg-pwhite">
                     <div className="grid mx-2 my-5 place-items-center">
                         <div className="w-11/12 p-12 px-6 py-10 bg-white rounded-lg shadow-md sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 sm:px-10 sm:py-6 lg:shadow-lg">
@@ -119,19 +120,20 @@ export default function NewPassword({hash}) {
 
 export async function getServerSideProps(context) {
     const {hash} = context.query;
+    const menu = await getMenu(context.locale);
     const user = await getUserByHash(hash);
 
     console.log(user, hash);
 
     if (!user || user.length === 0) {
         return {
-            props: {},
+            props: {menu},
         };
     }
     if (hash) {
         return {
-            props: {hash}, // will be passed to the page component as props
+            props: {menu, hash}, // will be passed to the page component as props
         };
     }
-    return {props: {}};
+    return {props: {menu}};
 }
