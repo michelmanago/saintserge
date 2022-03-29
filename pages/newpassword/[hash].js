@@ -11,8 +11,6 @@ export default function NewPassword({menu, hash}) {
     const [status, setStatus] = useState('main');
     const [message, setMessage] = useState();
     const {locale} = router;
-    const passRef = useRef(null);
-    const passCheckRef = useRef(null);
     let title;
     switch (locale) {
         case 'fr':
@@ -70,7 +68,7 @@ export default function NewPassword({menu, hash}) {
                             {hash && status === 'main' && (
                                 <form className="mt-10" onSubmit={handleReset}>
                                     <label className="block mt-2 text-xs font-semibold text-gray-600 uppercase">
-                                        Password
+                                        Mot de Passe
                                         <input
                                             id="password"
                                             type="password"
@@ -82,7 +80,7 @@ export default function NewPassword({menu, hash}) {
                                     </label>
 
                                     <label className="block mt-2 text-xs font-semibold text-gray-600 uppercase">
-                                        Confirm password
+                                        Confirmer le Mot de Passe
                                         <input
                                             id="password_confirm"
                                             type="password"
@@ -105,7 +103,7 @@ export default function NewPassword({menu, hash}) {
                                     <div>Le mot de passe a été changé</div>
                                     <Link href="/login">
                                         <a className="w-full py-3 font-medium text-center text-white uppercase rounded-sm bg-pred focus:outline-none hover:bg-pred-dark hover:shadow-none">
-                                            login
+                                            Connection
                                         </a>
                                     </Link>
                                 </div>
