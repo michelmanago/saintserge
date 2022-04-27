@@ -1,6 +1,7 @@
 // libs
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import useTranslation from "next-translate/useTranslation";
 import { signOut, useSession } from 'next-auth/client';
 import Link from "next/link"
 
@@ -11,8 +12,9 @@ import styles from '../../styles/components/header.module.css';
 import Image from 'next/image';
 import Nav from '../nav/nav';
 
-export default function Header({ menu, translations }) {
+export default function Header({ menu, translations, currentLanguage }) {
     const [session] = useSession();
+    const {t} = useTranslation()
 
     /** Hooks */
     const router = useRouter();
@@ -37,7 +39,7 @@ export default function Header({ menu, translations }) {
                     {/* Title */}
                     <div className="">
                         <div className="ml-2 text-xl md:text-4xl mb-5 lg:mb-0 text-center lg:text-left font-bold text-pred font-logotitle">
-                            Association pour la restauration de la colline Saint-Serge à Paris
+                        {t("home:header")}
                         </div>
                     </div>
 
