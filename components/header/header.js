@@ -5,16 +5,13 @@ import useTranslation from "next-translate/useTranslation";
 import { signOut, useSession } from 'next-auth/client';
 import Link from "next/link"
 
-// styles
-import styles from '../../styles/components/header.module.css';
 
 // components
-import Image from 'next/image';
 import Nav from '../nav/nav';
 
 export default function Header({ menu, translations, currentLanguage }) {
     const [session] = useSession();
-    const {t} = useTranslation()
+    const {t} = useTranslation();
 
     /** Hooks */
     const router = useRouter();
@@ -39,7 +36,8 @@ export default function Header({ menu, translations, currentLanguage }) {
                     {/* Title */}
                     <div className="">
                         <div className="ml-2 text-xl md:text-4xl mb-5 lg:mb-0 text-center lg:text-left font-bold text-pred font-logotitle">
-                        {t("home:header")}
+                        {/* t("home:header") */}
+                        Association Culturelle de la colline Saint-Serge
                         </div>
                     </div>
 
