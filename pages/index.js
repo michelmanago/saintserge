@@ -30,7 +30,7 @@ export default function Home({ menu, articles }) {
       </Head>
 
       {/* Header */}
-      {menu && <Header menu={menu.data} />}
+      {menu && <Header menu={menu.data} currentLanguage={locale} />}
 
       {/* Page home */}
       <div className={styles.home}>
