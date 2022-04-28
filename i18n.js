@@ -1,9 +1,9 @@
 module.exports = {
     locales: ['en', 'fr', 'ru'],
     defaultLocale: 'fr',
-    "pages": {
+    keySeparator: ':',
+    pages: {
         // "*": ["common"],
-        "/": ["home"],
-    }
-}
-  
+        '*': ['home'],
+    },
+};
