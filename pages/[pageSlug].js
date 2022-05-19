@@ -14,7 +14,7 @@ import {getMenu} from '../model/menu';
 import {getPageBySlug} from '../model/page';
 
 // utils
-import {getMediaLink} from '../utils/utils-serveur-image';
+import {getMediaLink, isVideo} from '../utils/utils-serveur-image';
 
 const NavCompositeur = dynamic(() => import('../components/compositeurs/nav'));
 
@@ -59,11 +59,21 @@ export default function DynPage({menu, page}) {
             {/* Banner */}
             {page.bandeau && page.page != 'articles' && (
                 <div style={bannerStyles} className="">
-                    <img
-                        className="block object-cover w-full h-full"
-                        src={getMediaLink(page.bandeau.public_path)}
-                        alt=""
-                    />
+                    {isVideo(page.bandeau.public_path) ? (
+                        <video
+                            className="block object-cover w-full h-full"
+                            src={getMediaLink(page.bandeau.public_path)}
+                            loop
+                            autoPlay
+                            playsInline
+                        />
+                    ) : (
+                        <img
+                            className="block object-cover w-full h-full"
+                            src={getMediaLink(page.bandeau.public_path)}
+                            alt=""
+                        />
+                    )}
                 </div>
             )}
 

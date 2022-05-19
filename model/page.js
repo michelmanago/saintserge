@@ -228,3 +228,29 @@ export async function getPagesByName(name) {
 
     return pages;
 }
+
+const PageModel = {};
+
+PageModel.update = async page => {
+    let updatePage = await prisma.pagecontent.update({
+        where: {
+            id: page.id,
+        },
+        data: page,
+    });
+    return JSON.parse(JSON.stringify(updatePage));
+};
+
+PageModel.search = async (pageName, locale = 'fr') => {
+    let pages = await prisma.pagecontent.findMany({
+        where: {
+            pageName: {
+                contains: pageName,
+            },
+            language: locale,
+        },
+    });
+    return JSON.parse(JSON.stringify(pages));
+};
+
+export default PageModel;
