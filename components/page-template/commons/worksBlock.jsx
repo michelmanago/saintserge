@@ -1,9 +1,18 @@
+import {useRouter} from 'next/router';
+
 const WorksBlock = ({works}) => {
+    const {locale} = useRouter();
     return (
         <div>
             {works && works.filter(work => work.status === 'Done').length != 0 && (
                 <div>
-                    <h2>Travaux réalisés</h2>
+                    <h2>
+                        {locale === 'fr'
+                            ? 'Travaux réalisés'
+                            : locale === 'en'
+                            ? 'Work Completed'
+                            : 'Осуществленные работы'}
+                    </h2>
                     <ul>
                         {works &&
                             works
@@ -14,7 +23,13 @@ const WorksBlock = ({works}) => {
             )}
             {works && works.filter(work => work.status === 'workInProgess').length != 0 && (
                 <div>
-                    <h2>Travaux en cours</h2>
+                    <h2>
+                        {locale === 'fr'
+                            ? 'Travaux en cours'
+                            : locale === 'en'
+                            ? 'Work in Progress'
+                            : 'Ведущиеся работы'}
+                    </h2>
                     <ul>
                         {works
                             .filter(work => work.status === 'workInProgess')
@@ -27,7 +42,13 @@ const WorksBlock = ({works}) => {
 
             {works && works.filter(work => work.status === 'toDo').length != 0 && (
                 <div>
-                    <h2>Travaux à faire</h2>
+                    <h2>
+                        {locale === 'fr'
+                            ? 'Travaux à faire'
+                            : locale === 'en'
+                            ? 'Work to Be Done'
+                            : 'Необходимые работы, которые осталось провести'}
+                    </h2>
                     <ul>
                         {works
                             .filter(work => work.status === 'toDo')
