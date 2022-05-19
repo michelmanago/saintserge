@@ -6,6 +6,7 @@ import CustomEditor from '../../text-editor/customEditor';
 import CarouselEditor from '../carousel-editor';
 import IconArrowDown from '../../icons/IconArrowDown';
 import IconArrowUp from '../../icons/IconArrowUp';
+import WorksEditor from './worksEditor';
 
 const ButtonPositionArrow = ({children, onClick}) => (
     <button className="" onClick={onClick}>
@@ -28,7 +29,7 @@ const BlockContentEditor = ({
     useEffect(() => {
         setIsRender(false);
         setTimeout(() => setIsRender(true), 1000);
-    }, [])
+    }, []);
     return (
         <div className="flex flex-col items-end pr-5 mb-10 border-r-4">
             {/* Position */}
@@ -82,6 +83,15 @@ const BlockContentEditor = ({
                 {/* CAROUSEL */}
                 {type === 'carousel' && (
                     <CarouselEditor
+                        originalPageId={originalPageId}
+                        content={content}
+                        setContent={setContent}
+                        addAttributedMedia={addAttributedMedia}
+                    />
+                )}
+                {/* Travaux */}
+                {type === 'works' && (
+                    <WorksEditor
                         originalPageId={originalPageId}
                         content={content}
                         setContent={setContent}
