@@ -91,7 +91,7 @@ export async function getStaticProps(context) {
     let homePage = await getLastPages(context.locale, 'home', 1);
 
     // so that we can directly manipulate JS object in Components
-    if (homePage[0]) {
+    if (homePage && homePage[0]) {
         const bandeau = await getServeurImageMedia(homePage[0].bandeau_id);
         homePage[0].bandeau = bandeau;
         homePage[0].blocks = JSON.parse(homePage[0].blocks);
