@@ -1,138 +1,133 @@
-
 // DATE
 export function twoDigits(d) {
-    if(0 <= d && d < 10) return "0" + d.toString();
-    if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+    if (0 <= d && d < 10) return '0' + d.toString();
+    if (-10 < d && d < 0) return '-0' + (-1 * d).toString();
     return d.toString();
 }
 
 // MYSQL
-export function toMysqlFormat(date){
-    return date.getFullYear() + "-" + twoDigits(1 + date.getMonth()) + "-" + twoDigits(date.getDate()) + " " + twoDigits(date.getHours()) + ":" + twoDigits(date.getMinutes()) + ":" + twoDigits(date.getSeconds());
+export function toMysqlFormat(date) {
+    return (
+        date.getFullYear() +
+        '-' +
+        twoDigits(1 + date.getMonth()) +
+        '-' +
+        twoDigits(date.getDate()) +
+        ' ' +
+        twoDigits(date.getHours()) +
+        ':' +
+        twoDigits(date.getMinutes()) +
+        ':' +
+        twoDigits(date.getSeconds())
+    );
 }
 
 // MATH
 export function inRange(x, min, max) {
-    return ((x-min)*(x-max) <= 0)
+    return (x - min) * (x - max) <= 0;
 }
 
 // FETCH
 
 // Menu
-export function getMenuHref(href){
-    return href.startsWith("/") ? href : `/${href}`
+export function getMenuHref(href) {
+    return href.startsWith('/') ? href : `/${href}`;
 }
 
 // Tree data
-export function recursiveMapTreeData(treeData, cb){
-
+export function recursiveMapTreeData(treeData, cb) {
     return treeData.map(treeDataItem => {
+        const item = cb(treeDataItem);
 
-        const item = cb(treeDataItem)
-
-        if(item.children && item.children.length){
-            item.children = recursiveMapTreeData(item.children)
+        if (item.children && item.children.length) {
+            item.children = recursiveMapTreeData(item.children);
         }
 
-        return item
-
-    })
-
+        return item;
+    });
 }
 
 // HTML
 
 // form
-export function onSubmitPreventForm(event){
+export function onSubmitPreventForm(event) {
     event.preventDefault();
     event.stopPropagation();
 }
-
 
 // Misc
 
 export function truncateString(str, num) {
     if (str.length <= num) {
-      return str
+        return str;
     }
-    return str.slice(0, num) + '...'
-  }
+    return str.slice(0, num) + '...';
+}
 
-export function filterObj(obj, filter){
-  
-    let output = {}
+export function filterObj(obj, filter) {
+    let output = {};
 
     Object.keys(obj).map(key => {
-      
-      let val = obj[key]
-      
-      if(filter(key, val)){
-         output[key] = val
-      }
-    })
-    
-    return output
+        let val = obj[key];
 
+        if (filter(key, val)) {
+            output[key] = val;
+        }
+    });
+
+    return output;
 }
 
-export function capitalize(s){
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
+export function capitalize(s) {
+    if (typeof s !== 'string') return '';
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-export function isHome(){
-    switch(window.location.pathname){
-        case "/":
-        case "/fr":
-        case "/en":
-        case "/ru":
-            return true
+export function isHome() {
+    switch (window.location.pathname) {
+        case '/':
+        case '/fr':
+        case '/en':
+        case '/ru':
+            return true;
         default:
-            return false
+            return false;
     }
 }
 
-export function separateBy(array, fn){
-
-    let indexes = {}
+export function separateBy(array, fn) {
+    let indexes = {};
 
     array.forEach((item, index) => {
-
-        let value = fn(item, index)
+        let value = fn(item, index);
 
         // all falsy values (except 0) become "undefined key"
-        value = value !== 0 && !value ? undefined : value
+        value = value !== 0 && !value ? undefined : value;
 
-        if(indexes[value]){
-            indexes[value].push(item)
+        if (indexes[value]) {
+            indexes[value].push(item);
         } else {
-            indexes[value] = [item]
+            indexes[value] = [item];
         }
+    });
 
-    })
-
-    return Object.values(indexes)
-
+    return Object.values(indexes);
 }
 
-export function voidFunction(){}
+export function voidFunction() {}
 
-export function getPagesSortedByPosition(list)  {
+export function getPagesSortedByPosition(list) {
+    if (!list) return [];
 
-    if(!list) return []
+    const sortedPages = [...list];
+    sortedPages.sort((a, b) => a.position - b.position);
 
-
-    const sortedPages = [...list]
-    sortedPages.sort((a, b) => a.position - b.position)
-
-    return sortedPages
-
+    return sortedPages;
 }
 
-export function getBlockListSortedByPosition(list, asc = true){
+export function getBlockListSortedByPosition(list, asc = true) {
+    const sortedBlocks = JSON.parse(JSON.stringify(list));
+    sortedBlocks.sort((a, b) => (a.position - b.position) * (asc ? 1 : -1));
 
-    const sortedBlocks = [...list]
-    sortedBlocks.sort((a, b) => (a.position - b.position) * (asc ? 1 : -1))
-
-    return sortedBlocks
+    return sortedBlocks;
 }

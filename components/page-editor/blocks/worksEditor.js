@@ -4,15 +4,12 @@ import IconArrowDown from '../../icons/IconArrowDown';
 import Trash from '../../icons/trash';
 
 export default function WorksEditor({content, setContent, originalPageId, addAttributedMedia}) {
-    const [localContent, setLocalContent] = useState(content ? content : []);
-
     const addWork = () => {
         let newContent = [...content];
         newContent.push({
             status: 'toDo',
             label: '',
         });
-        //setLocalContent(newContent);
         setContent(newContent);
     };
     return (
@@ -48,15 +45,17 @@ export default function WorksEditor({content, setContent, originalPageId, addAtt
                                     >
                                         <option value={'toDo'}>A Faire</option>
                                         <option value={'workInProgess'}>En cours</option>
-                                        <option value={'Done'}>Réaliser</option>
+                                        <option value={'Done'}>Réalisé</option>
                                     </select>
                                     <button
-                                        className="px-2 py-1 text-white bg-blue-700 rounded hover:bg-blue-800"
+                                        className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                                         onClick={e => {
                                             e.preventDefault();
-                                            let newContent = [...content];
-                                            newContent.splice(index, 1);
-                                            setContent(newContent);
+                                            if (window.confirm('voulez vous vraiment supprimer cet élément ?')) {
+                                                let newContent = [...content];
+                                                newContent.splice(index, 1);
+                                                setContent(newContent);
+                                            }
                                         }}
                                     >
                                         Supprimer
