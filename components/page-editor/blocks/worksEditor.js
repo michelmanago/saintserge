@@ -60,7 +60,7 @@ export default function WorksEditor({content, setContent, originalPageId, addAtt
                         ))}
                 </div>
                 <Popup lockScroll={true} open={popupOpen} onClose={() => setPopupOpen(false)}>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col max-h-screen gap-1 overflow-auto">
                         <div className="flex flex-row-reverse">
                             <button
                                 className="p-1 text-white bg-red-500 rounded hover:bg-red-600"
