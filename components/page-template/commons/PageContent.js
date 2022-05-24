@@ -9,9 +9,9 @@ import TexteAnnote from '../../Popup/texteannote';
 import VideoModal from '../../Popup/videoModal';
 import ImageModal from '../../Popup/imageModal';
 import PdfDownload from '../../Popup/pdf-download';
+import WorksBlock from './worksBlock';
 
 export default function PageContent({pageName, blocks, attribs}) {
-
     // prevent from mapping String
     const list = blocks && Array.isArray(blocks) ? blocks : null;
 
@@ -31,16 +31,13 @@ export default function PageContent({pageName, blocks, attribs}) {
         blockList =
             list &&
             sortedBlocks(list).map((block, index) => {
-
-                const key = `${block.position}-${block.type}`
+                const key = `${block.position}-${block.type}`;
 
                 if (block.type === 'text') {
                     return (
                         <div key={key}>
                             {htmlParse(block.content, {
                                 replace: domNode => {
-
-
                                     // Render Tooltip {TexteAnnote}
                                     if (domNode.attribs && domNode.attribs['data-js-tooltip'] !== undefined) {
                                         if (domNode.firstChild && domNode.firstChild.type === 'text') {
@@ -51,8 +48,8 @@ export default function PageContent({pageName, blocks, attribs}) {
                                         } else {
                                             console.warn('First child is not type text');
                                         }
-                                    } 
-                                    
+                                    }
+
                                     // Render Video Modal
                                     else if (domNode.attribs && domNode.attribs['data-js-videomodal'] !== undefined) {
                                         const url = domNode.attribs['src'];
@@ -61,27 +58,22 @@ export default function PageContent({pageName, blocks, attribs}) {
                                             <div className={`${domNode.attribs && domNode.attribs.class}`}>
                                                 <VideoModal url={url} />
                                             </div>
-                                        )
-                                    } 
-
-                                    else if(domNode.name === "video"){
-
+                                        );
+                                    } else if (domNode.name === 'video') {
                                         return (
                                             <div className={`${domNode.attribs && domNode.attribs.class}`}>
-                                                <video 
-                                                    className="" 
-                                                    controls 
+                                                <video
+                                                    className=""
+                                                    controls
                                                     src={domNode.attribs && domNode.attribs.src}
                                                     loop
                                                 ></video>
                                             </div>
-                                        )
-
+                                        );
                                     }
-                                    
+
                                     // Render Image modal
                                     else if (domNode.name === 'img') {
-
                                         // data
                                         const url = domNode.attribs['src'];
                                         const legende = domNode.attribs['data-legende'];
@@ -101,8 +93,8 @@ export default function PageContent({pageName, blocks, attribs}) {
                                                 credit={credit}
                                             />
                                         );
-                                    } 
-                                    
+                                    }
+
                                     // Render PDF Downloadable
                                     else if (domNode.attribs && domNode.attribs['data-js-pdf'] !== undefined) {
                                         const url = domNode.attribs['href'];
@@ -117,6 +109,12 @@ export default function PageContent({pageName, blocks, attribs}) {
                     return (
                         <div key={key}>
                             <CarouselParam imgList={block.content.data} legende={block.content.legende} id={block.id} />
+                        </div>
+                    );
+                } else if (block.type === 'works') {
+                    return (
+                        <div key={key}>
+                            <WorksBlock works={block.content} />
                         </div>
                     );
                 }

@@ -1,12 +1,11 @@
-
 // libs
-import { useState } from "react";
+import {useState} from 'react';
 
 const InputAddBlock = ({addBlock}) => {
     const [type, setType] = useState('text');
     return (
         <div className="">
-            <p className="text-lg font-medium pl-1">Ajouter un Bloc</p>
+            <p className="pl-1 text-lg font-medium">Ajouter un Bloc</p>
             <select
                 className="px-1 mx-1 border rounded"
                 defaultValue={type}
@@ -15,6 +14,7 @@ const InputAddBlock = ({addBlock}) => {
                 <option value="">--- Block Type ---</option>
                 <option value="text">Text</option>
                 <option value="carousel">Carousel</option>
+                <option value="works">Travaux</option>
             </select>
             <button className="px-1 mx-1 border rounded cursor-pointer" onClick={() => addBlock(type)}>
                 Ajouter
@@ -23,4 +23,4 @@ const InputAddBlock = ({addBlock}) => {
     );
 };
 
-export default InputAddBlock
+export default InputAddBlock;
