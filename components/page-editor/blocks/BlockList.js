@@ -20,8 +20,8 @@ export default function BlockList({
 
     const addBlockContent = type => {
         // if blocks are draggable we must count each items's postions to compute a new position
-        //const newPosition = blockList.length + 1;
-        //const newBlock = blockFormat(type, newPosition);
+        const newPosition = blockList.length + 1;
+        const newBlock = blockFormat(type, newPosition);
 
         if (type === 'works') {
             setPages(
