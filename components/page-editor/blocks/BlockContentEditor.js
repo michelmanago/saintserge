@@ -24,6 +24,8 @@ const BlockContentEditor = ({
     originalPageId,
     addAttributedMedia,
     currentPage,
+    allPageBlocks,
+    updateBlockPages,
 }) => {
     const [isRender, setIsRender] = useState(true);
     useEffect(() => {
@@ -95,7 +97,9 @@ const BlockContentEditor = ({
                         originalPageId={originalPageId}
                         content={content}
                         setContent={setContent}
-                        addAttributedMedia={addAttributedMedia}
+                        allPageBlocks={allPageBlocks}
+                        updateBlockPages={updateBlockPages}
+                        currentPage={currentPage}
                     />
                 )}
             </div>

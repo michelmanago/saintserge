@@ -4,151 +4,150 @@ import InputAddBlock from '../inputs/InputAddBlock';
 import InputImportBlock from '../inputs/InputImportBlock';
 
 // utils
-import { blockFormat } from '../../../utils/page-editor-formats';
-import { getBlockListSortedByPosition } from '../../../utils/utils';
+import {blockFormat} from '../../../utils/page-editor-formats';
+import {getBlockListSortedByPosition} from '../../../utils/utils';
 
-
-
-export default function BlockList({blockList, updateCurrentPage, originalPageId, pages, currentPage, addAttributedMedia}){
-
+export default function BlockList({
+    blockList,
+    updateCurrentPage,
+    originalPageId,
+    pages,
+    setPages,
+    currentPage,
+    addAttributedMedia,
+}) {
     // listeners
 
     const addBlockContent = type => {
-
         // if blocks are draggable we must count each items's postions to compute a new position
-        const newPosition = blockList.length + 1
-        const newBlock = blockFormat(type, newPosition)
+        //const newPosition = blockList.length + 1;
+        //const newBlock = blockFormat(type, newPosition);
 
-        updateCurrentPage({
-            blocks: [
-                ...blockList,
-                newBlock
-            ]
-        })
-
+        if (type === 'works') {
+            setPages(
+                pages.map(page => {
+                    return {
+                        ...page,
+                        blocks: [...page.blocks, blockFormat(type, page.blocks.length + 1)],
+                    };
+                }),
+            );
+        } else {
+            updateCurrentPage({
+                blocks: [...blockList, newBlock],
+            });
+        }
     };
 
     const setBlockContent = blockPosition => value => {
-        
         let blocks = blockList.map(block => {
-
-            if(block.position === blockPosition){
+            if (block.position === blockPosition) {
                 return {
                     ...block,
-                    content: value
-                }
+                    content: value,
+                };
             } else {
-                return block
+                return block;
             }
+        });
 
-        })
-
-        updateCurrentPage({blocks})   
-    }
+        updateCurrentPage({blocks});
+    };
 
     const removeBlockContent = initialBlock => e => {
-        
-        let blocks = blockList.filter(block => block.position !== initialBlock)
-        
+        let blocks = blockList.filter(block => block.position !== initialBlock);
+
         // reorder
         blocks = blocks.map(block => {
-
-            if(block.position > initialBlock){
+            if (block.position > initialBlock) {
                 return {
                     ...block,
-                    position: block.position - 1
-                }
+                    position: block.position - 1,
+                };
             } else {
-                return block
+                return block;
             }
+        });
 
-        })
-        
-
-        updateCurrentPage({blocks})   
-    }
+        updateCurrentPage({blocks});
+    };
 
     const setBlockPosition = initialPosition => direction => {
+        const newPosition = initialPosition + direction;
 
-        const newPosition = initialPosition + direction
-
-        if(newPosition <= blockList.length && newPosition > 0){ 
-
+        if (newPosition <= blockList.length && newPosition > 0) {
             const blocks = blockList.map(block => {
-
-                if(block.position === initialPosition){
+                if (block.position === initialPosition) {
                     return {
                         ...block,
                         position: newPosition,
-                    }
-                } 
-                
-                else if(block.position === newPosition){
+                    };
+                } else if (block.position === newPosition) {
                     return {
                         ...block,
-                        position: initialPosition
-                    }
-                }
-                
-                else {
+                        position: initialPosition,
+                    };
+                } else {
                     return {
-                        ...block
-                    }
+                        ...block,
+                    };
                 }
+            });
 
-            })
-
-            updateCurrentPage({blocks})   
-
+            updateCurrentPage({blocks});
         } else {
-            console.log("OUT")
+            console.log('OUT');
         }
-        
+    };
 
-    }
+    const updateBlockPages = blockPages => {
+        let newPages = [...pages];
+        newPages.map((page, index) => {
+            page.blocks = blockPages[index];
+        });
+        setPages(newPages);
+    };
 
     // prevent from mapping String
-    const list = blockList && Array.isArray(blockList) ? blockList : []
+    const list = blockList && Array.isArray(blockList) ? blockList : [];
 
     return (
         <div className="">
-            
             {/* Actions */}
             <div className="px-2 py-3 mb-10 border-2 border-dashed">
                 {/* Input - add block */}
                 <InputAddBlock addBlock={addBlockContent} />
 
                 {/* Import */}
-                <InputImportBlock key={currentPage.language} updateCurrentPage={updateCurrentPage} pages={pages} currentPage={currentPage}/>
+                <InputImportBlock
+                    key={currentPage.language}
+                    updateCurrentPage={updateCurrentPage}
+                    pages={pages}
+                    currentPage={currentPage}
+                />
             </div>
-            
-            {/* List */}
-            {
-               
-                list && (
-                    getBlockListSortedByPosition(list).map((block, blockIndex) => {
-                        
-                        return (
-                            <BlockContentEditor 
-                                key={"block-" + block.position} 
-                                type={block.type}
-                                content={block.content}
-                                position={block.position}
-                                originalPageId={originalPageId}
-                                currentPage={currentPage}
-    
-                                // actions
-                                setContent={setBlockContent(block.position)}
-                                removeBlockContent={removeBlockContent(block.position)}
-                                setBlockPosition={setBlockPosition(block.position)}
-                                addAttributedMedia={addAttributedMedia}
-                            />
-                        )
-    
-                    })
-                )
-            }
-        </div>
-    )
 
+            {/* List */}
+            {list &&
+                getBlockListSortedByPosition(list).map((block, blockIndex) => {
+                    return (
+                        <BlockContentEditor
+                            key={'block-' + block.position}
+                            type={block.type}
+                            content={block.content}
+                            position={block.position}
+                            originalPageId={originalPageId}
+                            currentPage={currentPage}
+                            allPageBlocks={pages.map(page => page.blocks)}
+                            // actions
+                            setContent={setBlockContent(block.position)}
+                            removeBlockContent={removeBlockContent(block.position)}
+                            setBlockPosition={setBlockPosition(block.position)}
+                            addAttributedMedia={addAttributedMedia}
+                            updateBlockPages={updateBlockPages}
+                        />
+                    );
+                })}
+        </div>
+    );
 }
