@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react';
 // utils
-import {getMediaLink, getServeurImageMedia} from '../../../utils/utils-serveur-image';
+import {getMediaLink, getServeurImageMedia, isVideo} from '../../../utils/utils-serveur-image';
 
 // components
 import ModalMedia from '../../modal-media/ModalMedia';
@@ -92,7 +92,11 @@ export default function BlockBandeau({
             {/* MODE - EDIT */}
             <div style={{display: bandeau_id ? '' : 'none'}}>
                 {/* The image */}
-                {src && <img className="block object-contain w-full rounded-lg" src={src} alt="" />}
+                {src && isVideo(src) ? (
+                    <video className="block object-contain w-full rounded-lg" src={src} controls />
+                ) : (
+                    <img className="block object-contain w-full rounded-lg" src={src} alt="" />
+                )}
 
                 <hr className="my-3" />
 

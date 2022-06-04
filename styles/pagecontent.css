@@ -55,15 +55,14 @@
 
 /* Images */
 
-.pagecontent .page__imgfloatright{
-    @apply float-right clear-right md:w-1/3 w-full p-0 md:mt-2 md:ml-2;
+.pagecontent .page__imgfloatright {
+    @apply float-right clear-right w-full p-0 md:w-1/3 md:mt-2 md:ml-2;
 }
 
-
-.pagecontent .page__imgaligncenter{
-    @apply md:w-2/3 w-full mx-auto;
+.pagecontent .page__imgaligncenter {
+    @apply flex flex-col justify-center w-full mx-auto md:w-2/3;
 }
 
-.pagecontent .page__imgfloatleft{
-    @apply float-left clear-left md:w-1/3 w-full p-0 md:mr-2 md:mt-2;
+.pagecontent .page__imgfloatleft {
+    @apply float-left w-full p-0 clear-left md:w-1/3 md:mr-2 md:mt-2;
 }
