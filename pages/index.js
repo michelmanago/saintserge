@@ -59,7 +59,7 @@ export default function Home({menu, page, articles}) {
                             </div>
                         )}
                         {/* Content */}
-                        <main className="max-w-screen-xl px-10 py-10 mx-auto bg-white">
+                        <main className="max-w-screen-xl px-5 py-10 mx-auto bg-white">
                             <PageContent blocks={page.blocks} pageName={page.pageName} />
                         </main>
                     </>
