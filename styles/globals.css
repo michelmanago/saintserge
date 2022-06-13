@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+/** Fonts **/
+
+/* jost-regular */
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/fonts/Jost/Jost-Regular.ttf');
+}
+
+/* jost-medium */
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/static/fonts/Jost/Jost-Medium.ttf');
+}
+
+/* jost-bold */
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/static/fonts/Jost/Jost-Bold.ttf');
+}
+
+/* Alegreya-regular */
+@font-face {
+    font-family: 'Alegreya';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/static/fonts/Alegreya/Alegreya-Regular.ttf');
+}
+
+/* Alegreya-medium */
+@font-face {
+    font-family: 'Alegreya';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/static/fonts/Alegreya/Alegreya-Medium.ttf');
+}
+
+/* Alegreya-bold */
+@font-face {
+    font-family: 'Alegreya';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/static/fonts/Alegreya/Alegreya-Bold.ttf');
+}
+
 html,
 body {
     padding: 0;
@@ -10,7 +60,7 @@ body {
 
 body {
     @apply bg-pwhite;
-    @apply font-sans;
+    font-family: 'Jost', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 400;
 }
 
@@ -111,29 +161,22 @@ button {
     text-decoration: underline dotted;
 }
 
- 
-
-  .swiper-button-next {
+.swiper-button-next {
     background-image: url(/static/img/flechedroite.svg);
     background-repeat: no-repeat;
     width: 50px !important;
     background-position: center;
-  }
+}
 
-  .swiper-button-prev {
-      background-image: url(/static/img/flechegauche.svg);
-      background-repeat: no-repeat;
-      width: 50px !important;
-      background-position: center;
-  }
-
-
+.swiper-button-prev {
+    background-image: url(/static/img/flechegauche.svg);
+    background-repeat: no-repeat;
+    width: 50px !important;
+    background-position: center;
+}
 
 .popimage-content {
-      
-   
     width: 80%;
-   
 }
 
 .popimage-arrow {
@@ -143,8 +186,6 @@ button {
 .popimage-overlay {
     background: rgba(0, 0, 0, 0.719);
 }
-
-
 
 .closeModal {
     cursor: pointer;
@@ -170,7 +211,6 @@ button {
     width: 80%;
     padding: 5px;
 }
-
 
 /* Libs */
 
