@@ -7,7 +7,7 @@ export default function LastNews({articles}) {
     const router = useRouter();
     const {locale} = router;
     return (
-        <div className="bg-pwhite">
+        <div className="bg-white">
             <div className="container max-w-screen-xl bg-white sm:mx-auto">
                 <div className="px-5 pt-4 sm:px-48">
                     <h2>{locale === 'fr' ? 'Actualités' : locale === 'en' ? 'News' : 'Новости'}</h2>
@@ -29,11 +29,17 @@ export default function LastNews({articles}) {
                                 </Link>
                             </div>
                         ))}
-                        {/*<div className="w-full mt-3 text-center">
-                        <Link href="/articles">
-                            <a className='px-2 py-3 text-white cursor-pointer bg-pgold'>Toutes les Actualités</a>
-                        </Link>
-                                        </div>*/}
+                        <div className="w-full m-3 text-center">
+                            <Link href="/articles" locale={locale}>
+                                <a className="px-2 py-3 text-white rounded cursor-pointer bg-pred">
+                                    {locale === 'fr'
+                                        ? 'Toutes les Actualités'
+                                        : locale === 'en'
+                                        ? 'All news'
+                                        : 'Все новости'}
+                                </a>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
