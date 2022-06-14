@@ -34,13 +34,13 @@
 }
 
 .home ul {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     list-style: disc;
     padding-bottom: 6px;
 }
 
 .home ol {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     list-style: decimal;
     padding-bottom: 6px;
     padding-left: 18px;
@@ -57,7 +57,7 @@
 }
 
 .home p {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     line-height: 1.75rem;
     padding-bottom: 6px;
     @apply text-justify;
