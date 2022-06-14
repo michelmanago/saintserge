@@ -16,13 +16,13 @@
 }
 
 .pagecontent ul {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     list-style: disc;
     padding-bottom: 6px;
 }
 
 .pagecontent ol {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     list-style: decimal;
     padding-bottom: 6px;
     padding-left: 18px;
@@ -36,11 +36,11 @@
 
 .pagecontent ol li {
     @apply text-justify;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
 .pagecontent p {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     line-height: 1.75rem;
     padding-bottom: 6px;
 }
