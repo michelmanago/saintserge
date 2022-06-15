@@ -10,7 +10,6 @@ export default async function fetchCreateMedia(file) {
         const formdata = new FormData();
         let ext = file.name.substr(file.name.lastIndexOf('.') + 1);
         let name = cleanForSlug(file.name.substr(0, file.name.lastIndexOf('.'))) + '.' + ext;
-        console.log(name);
 
         formdata.append('file', file, name);
 
