@@ -60,7 +60,7 @@
 }
 
 .pagecontent .page__imgaligncenter {
-    @apply flex flex-row justify-center;
+    @apply flex flex-col mx-auto;
 }
 
 .pagecontent .page__imgfloatleft {
