@@ -7,7 +7,7 @@ export default function LastNews({articles}) {
     const router = useRouter();
     const {locale} = router;
     return (
-        <div className="bg-white">
+        <div className="">
             <div className="container max-w-screen-xl bg-white sm:mx-auto">
                 <div className="px-5 pt-4 sm:px-48">
                     <h2>{locale === 'fr' ? 'Actualités' : locale === 'en' ? 'News' : 'Новости'}</h2>
