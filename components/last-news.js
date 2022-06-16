@@ -9,29 +9,36 @@ export default function LastNews({articles}) {
     return (
         <div className="">
             <div className="container max-w-screen-xl bg-white sm:mx-auto">
-                <div className="px-5 pt-4 sm:px-48">
+                <div className="px-5 pt-4">
                     <h2>{locale === 'fr' ? 'Actualités' : locale === 'en' ? 'News' : 'Новости'}</h2>
                     <div className="flex flex-wrap p-2">
                         {articles?.map(article => (
-                            <div className="w-1/3 px-2" key={article.id}>
-                                <Link href={`/${article.pageSlug}`}>
-                                    <a>
-                                        <div className="relative">
-                                            <img className="mx-auto max-h-56" src={`${article.image}`} />
-                                        </div>
-                                        <div className="text-center">
-                                            <h3 className="inline-block">{article.pageName}</h3>
-                                            <div className="inline-block mx-2 text-sm">
+                            <>
+                                <div className="w-full px-2 mt-2 sm:w-1/2 md:w-1/3" key={article.id}>
+                                    <Link href={`/${article.pageSlug}`}>
+                                        <a className="flex flex-col gap-1">
+                                            {article.image ? (
+                                                <img className="mx-auto" src={`${article.image}`} />
+                                            ) : null}
+                                            <div className="font-serif text-xl font-bold sm:text-2xl">
+                                                {article.pageName}
+                                            </div>
+                                            <div className="inline-block text-sm">
+                                                {locale === 'fr'
+                                                    ? 'Publié le'
+                                                    : locale === 'en'
+                                                    ? 'Published'
+                                                    : 'Опубликовано'}{' '}
                                                 {getProperDate(article.created_at)}
                                             </div>
-                                        </div>
-                                    </a>
-                                </Link>
-                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </>
                         ))}
-                        <div className="w-full m-3 text-center">
+                        <div className="flex flex-row justify-center w-full mt-2">
                             <Link href="/articles" locale={locale}>
-                                <a className="px-2 py-3 text-white rounded cursor-pointer bg-pred">
+                                <a className="p-2 text-white rounded cursor-pointer bg-pred">
                                     {locale === 'fr'
                                         ? 'Toutes les Actualités'
                                         : locale === 'en'
