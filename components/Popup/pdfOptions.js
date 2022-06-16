@@ -16,7 +16,7 @@ export default function PdfOptions({open, setOpen, onSubmit}) {
             <button onClick={() => setOpen(false)} className="absolute top-0 right-0 text-gray-700 hover:text-gray-800">
                 <IconClose />
             </button>
-            <div className="mb-3 text-3xl font-medium">Video Options</div>
+            <div className="mb-3 text-3xl font-medium">Titre du PDF</div>
             <label htmlFor="valueInput"></label>
             <input
                 type="text"
