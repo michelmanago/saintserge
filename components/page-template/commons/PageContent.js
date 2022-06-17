@@ -10,6 +10,7 @@ import VideoModal from '../../Popup/videoModal';
 import ImageModal from '../../Popup/imageModal';
 import PdfDownload from '../../Popup/pdf-download';
 import WorksBlock from './worksBlock';
+import ContactBlock from './contactBlock';
 
 export default function PageContent({pageName, blocks, attribs}) {
     // prevent from mapping String
@@ -115,6 +116,12 @@ export default function PageContent({pageName, blocks, attribs}) {
                     return (
                         <div key={key}>
                             <WorksBlock works={block.content} />
+                        </div>
+                    );
+                } else if (block.type === 'contact') {
+                    return (
+                        <div key={key}>
+                            <ContactBlock />
                         </div>
                     );
                 }
