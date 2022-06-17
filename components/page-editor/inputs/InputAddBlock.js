@@ -15,6 +15,7 @@ const InputAddBlock = ({addBlock}) => {
                 <option value="text">Text</option>
                 <option value="carousel">Carousel</option>
                 <option value="works">Travaux</option>
+                <option value="contact">Contact</option>
             </select>
             <button className="px-1 mx-1 border rounded cursor-pointer" onClick={() => addBlock(type)}>
                 Ajouter

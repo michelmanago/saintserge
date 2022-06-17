@@ -14,6 +14,7 @@ export default function BlockBandeau({
     removeAttributedMedia,
     bandeau_id,
     originalPageId,
+    category,
 }) {
     // states
     const [opened, setOpened] = useState(false);
@@ -71,7 +72,7 @@ export default function BlockBandeau({
     // }, [])
 
     return (
-        <PageEditorSidebarBlock title="Bandeau de page">
+        <PageEditorSidebarBlock title={category != 'articles' ? 'Bandeau de page' : "Vignette de l'article"}>
             {/* MODE - CREATE */}
             {/* do not conditional render modal when you lockScroll - it dont unlockScroll on unMount but only with opened going false */}
             <div style={{display: bandeau_id ? 'none' : ''}}>

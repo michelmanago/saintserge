@@ -102,6 +102,11 @@ const BlockContentEditor = ({
                         currentPage={currentPage}
                     />
                 )}
+                {type === 'contact' && (
+                    <div className="px-5">
+                        <div className="capitalize">Bloc de type {type}</div>
+                    </div>
+                )}
             </div>
         </div>
     );

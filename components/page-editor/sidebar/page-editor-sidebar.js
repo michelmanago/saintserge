@@ -4,9 +4,9 @@ import InputSubmitPage from '../inputs/InputSubmitPage';
 import PageEditCategory from './PageEditCategory';
 
 // utils
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import BlockBandeau from './BlockBandeau';
-import BlockSource from './BlockSource'
+import BlockSource from './BlockSource';
 
 const PageEditorSidebar = ({
     updateCurrentPage,
@@ -31,34 +31,34 @@ const PageEditorSidebar = ({
     onRemoveMedia,
     updatePages,
     categories,
-    notAllowedToSave
+    notAllowedToSave,
 }) => {
-
     // hooks
-    const { locale } = useRouter();
+    const {locale} = useRouter();
 
     // setters
-    const setAuthor = e => updateCurrentPage({ author: e.target.value });
+    const setAuthor = e => updateCurrentPage({author: e.target.value});
 
     // others
-    const permalien = pagePermalien.startsWith("/") ? pagePermalien : ("/" + pagePermalien)
+    const permalien = pagePermalien.startsWith('/') ? pagePermalien : '/' + pagePermalien;
 
     return (
         <div>
             {/* Block langues */}
             <PageEditorSidebarBlock title="Langues">
-                {
-                    languagesLists.map(cat => {
+                {languagesLists.map(cat => {
+                    const catIsSelected = cat.value === language;
 
-                        const catIsSelected = cat.value === language
-
-                        return (
-                            <button key={cat.value} onClick={() => onChangeLanguage(cat.value)} className={`bg-gray-200 px-4 py-2 font-medium ${catIsSelected ? "bg-gray-400" : ""}`}>
-                                {cat.title}
-                            </button>
-                        )
-                    })
-                }
+                    return (
+                        <button
+                            key={cat.value}
+                            onClick={() => onChangeLanguage(cat.value)}
+                            className={`bg-gray-200 px-4 py-2 font-medium ${catIsSelected ? 'bg-gray-400' : ''}`}
+                        >
+                            {cat.title}
+                        </button>
+                    );
+                })}
             </PageEditorSidebarBlock>
 
             {/* Block bandeau */}
@@ -68,13 +68,11 @@ const PageEditorSidebar = ({
                 removeAttributedMedia={removeAttributedMedia}
                 bandeau_id={bandeau_id}
                 originalPageId={originalPageId}
+                category={category}
             />
 
             {/* Block source */}
-            <BlockSource
-                updatePages={updatePages}
-                source={source}
-            />
+            <BlockSource updatePages={updatePages} source={source} />
 
             {/* Block publier */}
             <PageEditorSidebarBlock title="Publier">
@@ -112,27 +110,23 @@ const PageEditorSidebar = ({
                 )}
 
                 <div className="mt-4">
-
                     {/* Permalien */}
-                    {isEditing && <div>
-                        <a target="_blank" className="underline" href={permalien}>
-                            Lien vers la page
-                        </a>
-                    </div>}
+                    {isEditing && (
+                        <div>
+                            <a target="_blank" className="underline" href={permalien}>
+                                Lien vers la page
+                            </a>
+                        </div>
+                    )}
 
                     {/* Remove page */}
                     {isEditing && (
                         <div>
-                            <button
-                                type="button"
-                                onClick={onRemovePage}
-                                className="text-red-500 underline"
-                            >
+                            <button type="button" onClick={onRemovePage} className="text-red-500 underline">
                                 Supprimer la page et ses traductions.
                             </button>
                         </div>
                     )}
-
                 </div>
                 {/* Publier */}
                 <div className="flex justify-end">
@@ -146,12 +140,7 @@ const PageEditorSidebar = ({
             </PageEditorSidebarBlock>
 
             {/* Block categorie */}
-            <PageEditCategory
-                updatePages={updatePages}
-                category={category}
-                categories={categories}
-            />
-
+            <PageEditCategory updatePages={updatePages} category={category} categories={categories} />
         </div>
     );
 };
