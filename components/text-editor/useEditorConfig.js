@@ -34,6 +34,7 @@ function renderElement(props) {
     const classEffect = getClassForEffect(element.effect);
     var newAttributes = {...attributes};
     let classArray = [classEffect];
+    if (element.className) classArray = [...element.className?.split(' '), classEffect];
     if (classEffect === 'page__imgfloatleft' || classEffect === 'page__imgfloatright') classArray.push('w-1/3');
     if (classEffect === 'page__imgaligncenter') classArray.push('w-2/3');
     newAttributes.className = classArray.join(' ');
