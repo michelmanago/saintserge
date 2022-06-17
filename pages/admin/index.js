@@ -34,6 +34,7 @@ export default function AdminIndex({menu, homePage}) {
                 <h1 className="mb-5 text-4xl font-semibold">Administrer le site</h1>
                 <div className="flex flex-col">
                     <BlockLink label="Pages" href="/admin/page" />
+                    <BlockLink label="Articles" href="/admin/article" />
                     <BlockLink label="Catégories" href="/admin/category" />
                     <BlockLink label="Menus de navigation" href="/admin/editor-menu" />
                     <BlockLink label="Utilisateurs" href="/admin/users/create" />
