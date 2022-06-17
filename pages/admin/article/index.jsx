@@ -15,7 +15,13 @@ export default function Articles({menu, articles}) {
             {/* Header */}
             {menu && <Header menu={menu.data} currentLanguage={locale} />}
             <main className="container max-w-screen-xl px-5 pt-4 bg-white sm:px-48 sm:mx-auto">
-                <h2>{locale === 'fr' ? 'Actualités' : locale === 'en' ? 'News' : 'Новости'}</h2>
+                <div className="flex mt-1 place-content-center">
+                    <Link href="/admin/page/create?type=articles">
+                        <a>
+                            <button className="w-48 py-3 text-white rounded bg-pred">Créer</button>
+                        </a>
+                    </Link>
+                </div>
                 <div className="flex flex-wrap p-2">
                     {articles?.map(article => (
                         <div className="w-1/3 px-2" key={article.id}>

@@ -6,7 +6,7 @@ import {toggleStyle} from './EditorUtils';
 import TexteAnnote from '../Popup/texteannote';
 import PdfDownload from '../Popup/pdf-download';
 import RenderMedia from './renderer/RenderMedia';
-import { getClassForEffect } from './helpers/classEffects';
+import {getClassForEffect} from './helpers/classEffects';
 const KeyBindings = {
     onKeyDown: (editor, event) => {
         if (isHotkey('mod+b', event)) {
@@ -33,8 +33,11 @@ function renderElement(props) {
     const {element, children, attributes} = props;
     const classEffect = getClassForEffect(element.effect);
     var newAttributes = {...attributes};
-    newAttributes.className = classEffect;
-    
+    let classArray = [classEffect];
+    if (element.className) classArray = [...element.className?.split(' '), classEffect];
+    if (classEffect === 'page__imgfloatleft' || classEffect === 'page__imgfloatright') classArray.push('w-1/3');
+    if (classEffect === 'page__imgaligncenter') classArray.push('w-2/3');
+    newAttributes.className = classArray.join(' ');
 
     switch (element.type) {
         case 'paragraph':
@@ -62,7 +65,6 @@ function renderElement(props) {
                 </Link>
             );
         case 'image':
-
             return (
                 <RenderMedia
                     type="image"
@@ -70,7 +72,9 @@ function renderElement(props) {
                     attributes={attributes}
                     element={element}
                     newAttributes={newAttributes}
-                >{children}</RenderMedia>
+                >
+                    {children}
+                </RenderMedia>
             );
         case 'video':
             return (
@@ -80,7 +84,9 @@ function renderElement(props) {
                     attributes={attributes}
                     element={element}
                     newAttributes={newAttributes}
-                >{children}</RenderMedia>
+                >
+                    {children}
+                </RenderMedia>
             );
         case 'audio':
             return (

@@ -28,7 +28,7 @@ const sidebarStyles = {
     maxWidth: 400,
 };
 
-export default function PageEditor({onFormSubmitted, editedPages, categories}) {
+export default function PageEditor({onFormSubmitted, editedPages, categories, defaultType}) {
     // hooks
     const {locales, defaultLocale} = useRouter();
 
@@ -326,7 +326,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories}) {
                         languagesLists={languagesLists}
                         pageSlug={currentPage.pageSlug}
                         author={currentPage.author}
-                        category={currentPage.page}
+                        category={currentPage.page ? currentPage.page : defaultType}
                         created_at={currentPage.created_at}
                         last_modified={currentPage.last_modified}
                         pagePermalien={currentPage.pageSlug}
