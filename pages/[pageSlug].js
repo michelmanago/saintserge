@@ -15,6 +15,7 @@ import {getPageBySlug} from '../model/page';
 
 // utils
 import {getMediaLink, isVideo} from '../utils/utils-serveur-image';
+import {useRouter} from 'next/router';
 
 const NavCompositeur = dynamic(() => import('../components/compositeurs/nav'));
 
@@ -28,6 +29,8 @@ export default function DynPage({menu, page}) {
     if (!page) {
         return <DefaultErrorPage statusCode={404} />;
     }
+
+    const {locale} = useRouter();
 
     // Lifecycle
     useEffect(() => {
@@ -52,6 +55,7 @@ export default function DynPage({menu, page}) {
         <div>
             <Head>
                 <title>{page && page.pageName}</title>
+                <meta http-equiv="content-language" content={`${locale}-${locale.toUpperCase()}`} />
             </Head>
 
             <Header menu={menu.data} translations={page.translations} />
