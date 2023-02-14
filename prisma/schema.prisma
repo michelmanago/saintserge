@@ -27,7 +27,7 @@ model category {
     title String? @db.VarChar(45)
 }
 
-model MediaPage {
+model media_page {
     id       Int @id @default(autoincrement())
     media_id Int
     page_id  Int
@@ -41,14 +41,13 @@ model MediaPage {
 }
 
 model medias {
-    id          Int         @id @default(autoincrement())
-    upload_path String?     @db.VarChar(250)
-    type        String?     @db.VarChar(200)
-    credit      String?     @db.VarChar(1000)
-    legende     String?     @db.VarChar(1000)
-    public_path String?     @db.VarChar(250)
-    page_id     Int?
-    pages       MediaPage[]
+    id          Int          @id @default(autoincrement())
+    upload_path String?      @db.VarChar(250)
+    type        String?      @db.VarChar(200)
+    credit      String?      @db.VarChar(1000)
+    legende     String?      @db.VarChar(1000)
+    public_path String?      @db.VarChar(250)
+    pages       media_page[]
 }
 
 model menus {
@@ -57,7 +56,7 @@ model menus {
     language String  @unique @db.VarChar(45)
 }
 
-model PageTranslations {
+model page_translations {
     id          Int @id @default(autoincrement())
     original_id Int
     child_id    Int
@@ -65,7 +64,6 @@ model PageTranslations {
     childPage pagecontent @relation(fields: [child_id], references: [id], onDelete: Cascade)
 
     @@index([child_id])
-    @@map("page_translations")
 }
 
 model pagecontent {
@@ -87,11 +85,11 @@ model pagecontent {
     source        String?   @db.VarChar(8000)
 
     works             works[]
-    medias            MediaPage[]
-    page_translations PageTranslations[]
+    medias            media_page[]
+    page_translations page_translations[]
 }
 
-model UserTable {
+model user_table {
     id          Int       @id @default(autoincrement())
     username    String    @db.VarChar(200)
     email       String?   @db.VarChar(245)
@@ -101,8 +99,6 @@ model UserTable {
     avatar      String?   @db.VarChar(200)
     role        String?   @default("author") @db.VarChar(45)
     hash        String?   @db.VarChar(200)
-
-    @@map("user_table")
 }
 
 model users {
