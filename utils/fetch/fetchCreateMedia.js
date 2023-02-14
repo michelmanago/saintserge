@@ -1,4 +1,5 @@
 import cleanForSlug from '../cleanForSlug';
+import {fetchWrapper} from '../utils';
 import {getFileType} from '../utils-media';
 import {getServerImageEndpoint} from '../utils-serveur-image';
 
@@ -27,11 +28,15 @@ export default async function fetchCreateMedia(file) {
         // Decode
         if (response.ok) {
             results = await response.json();
+            let res2 = await fetchWrapper(`/api/media`, results, 'POST');
+            let newMedia = await res2.json();
+            console.log({results, newMedia});
+            return newMedia;
         } else {
             throw new Error(response.statusText);
         }
 
-        return results;
+        // return results;
     } catch (error) {
         console.log(error);
         return false;

@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model accounts {
@@ -31,29 +32,39 @@ model MediaPage {
     media_id Int
     page_id  Int
 
+    media medias      @relation(fields: [media_id], references: [id])
+    page  pagecontent @relation(fields: [page_id], references: [id], onDelete: Cascade)
+
+    @@index([media_id])
+    @@index([page_id])
     @@map("media_page")
 }
 
 model medias {
-    id          Int     @id @default(autoincrement())
-    upload_path String? @db.VarChar(250)
-    type        String? @db.VarChar(200)
-    credit      String? @db.VarChar(1000)
-    legende     String? @db.VarChar(1000)
-    public_path String? @db.VarChar(250)
+    id          Int         @id @default(autoincrement())
+    upload_path String?     @db.VarChar(250)
+    type        String?     @db.VarChar(200)
+    credit      String?     @db.VarChar(1000)
+    legende     String?     @db.VarChar(1000)
+    public_path String?     @db.VarChar(250)
+    page_id     Int?
+    pages       MediaPage[]
 }
 
 model menus {
     id       Int     @id @default(autoincrement())
     links    String? @db.MediumText
-    language String? @db.VarChar(45)
+    language String  @unique @db.VarChar(45)
 }
 
 model PageTranslations {
-    id          Int  @id @default(autoincrement())
-    original_id Int?
-    child_id    Int?
+    id          Int @id @default(autoincrement())
+    original_id Int
+    child_id    Int
 
+    childPage pagecontent @relation(fields: [child_id], references: [id], onDelete: Cascade)
+
+    @@index([child_id])
     @@map("page_translations")
 }
 
@@ -74,7 +85,10 @@ model pagecontent {
     bandeau_id    Int?
     position      Int?
     source        String?   @db.VarChar(8000)
-    works         works[]
+
+    works             works[]
+    medias            MediaPage[]
+    page_translations PageTranslations[]
 }
 
 model UserTable {
@@ -107,4 +121,6 @@ model works {
     label  String
     pageId Int
     page   pagecontent @relation(fields: [pageId], references: [id])
+
+    @@index([pageId])
 }
