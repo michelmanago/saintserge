@@ -165,16 +165,6 @@ export async function insertTranslation(originalId, childId) {
 }
 
 export async function selectTranslations(originalPageId) {
-    // const res = await query(
-    //     `
-    //         SELECT p.*, t.child_id, t.original_id, t.id translation_id FROM
-    //             page_translations t, pagecontent p
-    //         WHERE t.child_id = p.id AND t.original_id = ?;
-    //     `,
-    //     [originalPageId],
-    // );
-
-    // return JSON.parse(JSON.stringify(res));
     let res = await prisma.page_translations.findMany({
         where: {
             original_id: parseInt(originalPageId),
@@ -192,7 +182,7 @@ export async function selectTranslations(originalPageId) {
         if (item.childPage.language === 'ru') response[2] = {...item.childPage};
     });
 
-    return JSON.pa;
+    return JSON.parse(JSON.stringify(response));
 }
 
 export async function updatePage({
@@ -222,68 +212,6 @@ export async function updatePage({
         position,
         source,
     };
-
-    // const valid_fields = filterObj(updatableFields, (key, val) => val !== undefined);
-    // const fields_count = valid_fields.length;
-
-    // // there is no fields
-    // if (fields_count === 0) {
-    //     throw new Error('no fields found');
-    // } else {
-    //     // SETTERS
-    //     let setters = '';
-
-    //     const fieldsKey = Object.keys(valid_fields);
-
-    //     fieldsKey.map((key, index) => {
-    //         if (index === 0) {
-    //             setters += key + ' = ?';
-    //         } else {
-    //             setters += ',' + key + ' = ?';
-    //         }
-    //     });
-
-    //     // VALUES
-    //     let values = [];
-
-    //     fieldsKey.forEach(key => {
-    //         let val = updatableFields[key];
-
-    //         // maybe needs to stringify json
-    //         if (key === 'blocks' && typeof val !== 'string') {
-    //             val = JSON.stringify(val);
-    //         }
-
-    //         if (key === 'page' && !val) {
-    //             val = null;
-    //         }
-
-    //         // add to values
-    //         values.push(val);
-    //     });
-
-    //     // finally add id
-    //     values.push(id);
-
-    //     const res = await query(
-    //         `
-    //             UPDATE pagecontent
-    //                 SET ${setters}
-
-    //             WHERE id = ?
-    //         `,
-    //         values,
-    //     );
-
-    //     if (!res.affectedRows) {
-    //         throw {
-    //             message: 'page not found id: ' + id,
-    //             status: 404,
-    //         };
-    //     } else {
-    //         return res.affectedRows;
-    //     }
-    // }
 
     const valid_fields = filterObj(updatableFields, (key, val) => val !== undefined);
     const fields_count = valid_fields.length;
