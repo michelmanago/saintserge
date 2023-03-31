@@ -6,6 +6,7 @@ import {
     selectNonAssociatedMedia,
     selectSingleMedia,
 } from '../dao/media';
+import prisma from '../lib/prisma';
 import {attributeMediaToPage} from './media_page';
 
 export async function createMedia(media) {
