@@ -97,7 +97,7 @@ export async function getStaticProps(context) {
         homePage[0].blocks = JSON.parse(homePage[0].blocks);
     }
 
-    let pages = await getLastPages(context.defaultLocale, 'articles', 9);
+    let pages = await getLastPages(context.locale, 'articles', 9);
 
     if (pages) {
         for (let article of pages) {
