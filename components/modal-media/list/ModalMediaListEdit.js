@@ -152,10 +152,10 @@ export default function ModalMediaListEdit({
         // Prevent miss click
         if (confirm("Êtes vous sûr de vouloir supprimer définitivement l'image ?")) {
             // fetch DELETE
-            // const deleted = await fetchDeleteMedia(media.id)
-            const deleted = await fetchWrapper(`/api/media/${media.id}`, null, 'DELETE');
+            const deleteFromServer = await fetchDeleteMedia(media.id);
 
-            if (deleted) {
+            if (deleteFromServer) {
+                const deleted = await fetchWrapper(`/api/media/${media.id}`, null, 'DELETE');
                 deleteMediaFromList(media.id);
             } else {
                 alert('Could not delete this media.');
