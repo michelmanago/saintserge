@@ -1,6 +1,7 @@
 import {v4 as uuidv4} from 'uuid';
 import prisma from '../../../../lib/prisma';
 import {sendResetPasswordEmail} from '../../../../lib/emailSender';
+import {getUserByEmail} from '../../../../model/user';
 export default async function Handler(req, res) {
     const {email} = req.query;
 
