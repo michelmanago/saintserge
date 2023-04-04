@@ -55,7 +55,7 @@ export default function DynPage({menu, page}) {
         <div>
             <Head>
                 <title>{page && page.pageName}</title>
-                <meta http-equiv="content-language" content={`${locale}-${locale.toUpperCase()}`} />
+                <meta httpEquiv="content-language" content={`${locale}-${locale.toUpperCase()}`} />
             </Head>
 
             <Header menu={menu.data} translations={page.translations} />
