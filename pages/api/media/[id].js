@@ -8,6 +8,10 @@ export default async function handler(req, res) {
             const results = await getSingleMedia(id);
 
             return res.json(results);
+        } else if (req.method === 'PUT') {
+            let data = req.body;
+            let mediaUpdate = await updateMedia(id, data);
+            return res.json(mediaUpdate);
         } else if (req.method === 'DELETE') {
             let mediaDelete = await deleteMedia(id);
             return res.json({msg: 'Media delete'});

@@ -248,40 +248,21 @@ export async function updatePage({
 }
 
 export async function selectPageBySlug(pageSlug) {
-    // const res = await query(
-    //     `
-    //     SELECT * FROM pagecontent
-    //     WHERE pageSlug = ?
-    //     `,
-    //     [pageSlug],
-    // );
-
     let param = {
         where: {
             pageSlug: pageSlug,
         },
     };
     let res = await prisma.pagecontent.findUnique(param);
-    // let page = res[0];
-    const works = await prisma.works.findMany({
-        where: {
-            // pageId: res[0].id,
-            pageId: res.id,
-        },
-    });
-    res.works = works;
+    if (res) {
+        const works = await prisma.works.findMany({
+            where: {
+                pageId: res.id,
+            },
+        });
+        res.works = works;
+    }
     return JSON.parse(JSON.stringify(res));
-
-    // if (res.length >= 1) {
-    //     let page = res[0];
-    //     const works = await prisma.works.findMany({
-    //         where: {
-    //             pageId: res[0].id,
-    //         },
-    //     });
-    //     page.works = works;
-    //     return JSON.parse(JSON.stringify(page));
-    // } else return null;
 }
 
 export async function selectAllPages(locale = null, category = '') {

@@ -152,7 +152,7 @@ export default function ModalMediaListEdit({
         // Prevent miss click
         if (confirm("Êtes vous sûr de vouloir supprimer définitivement l'image ?")) {
             // fetch DELETE
-            const deleteFromServer = await fetchDeleteMedia(media.id);
+            const deleteFromServer = await fetchDeleteMedia(media);
 
             if (deleteFromServer) {
                 const deleted = await fetchWrapper(`/api/media/${media.id}`, null, 'DELETE');
