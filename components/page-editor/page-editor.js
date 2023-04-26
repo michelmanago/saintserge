@@ -52,6 +52,12 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
 
     const canSave = !notAllowedToSave();
 
+    useEffect(() => {
+        pages.forEach(page => {
+            if (defaultType && page.page != defaultType) page.page = defaultType;
+        });
+        console.log({currentPage});
+    }, []);
     // lifecycle
     useEffect(() => {
         if (canSave && !isEditing) {
