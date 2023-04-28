@@ -1,3 +1,5 @@
+import {fetchWrapper} from './utils';
+
 // Check if media is a video
 export function isVideo(publicPath) {
     return (
@@ -21,19 +23,12 @@ export function getServerImageEndpoint() {
 }
 
 // fetch
-export function getServeurImageMedia(mediaId) {
-    const endpoint = getServerImageEndpoint() + '/' + mediaId;
-
-    return fetch(endpoint)
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(response.statusText);
-            }
-        })
-        .catch(err => {
-            console.log('GetServerMedia');
-            return null;
-        });
+export async function getServeurImageMedia(mediaId) {
+    let res = await fetchWrapper(`/api/media/${mediaId}`, null, 'GET');
+    if (res) {
+        let media = await res.json();
+        console.log({media});
+        return media;
+    }
+    return null;
 }
