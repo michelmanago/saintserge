@@ -18,7 +18,11 @@ export default function LastNews({articles}) {
                                     <Link href={`/${article.pageSlug}`}>
                                         <a className="flex flex-col gap-1">
                                             {article.image ? (
-                                                <img className="mx-auto" src={`${article.image}`} />
+                                                <img
+                                                    className="object-cover mx-auto"
+                                                    style={{aspectRatio: '4 / 3'}}
+                                                    src={`${article.image}`}
+                                                />
                                             ) : null}
                                             <div className="font-serif text-xl font-bold sm:text-2xl">
                                                 {article.pageName}

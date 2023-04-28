@@ -23,7 +23,11 @@ export default function Articles({menu, articles}) {
                             <Link href={`/${article.pageSlug}`}>
                                 <a>
                                     <div className="relative">
-                                        <img className="mx-auto max-h-56" src={`${article.image}`} />
+                                        <img
+                                            className="object-cover mx-auto max-h-56"
+                                            style={{aspectRatio: '4 / 3'}}
+                                            src={`${article.image}`}
+                                        />
                                     </div>
                                     <div className="text-center">
                                         <h3 className="inline-block">{article.pageName}</h3>
