@@ -156,6 +156,7 @@ export default function ModalMediaListEdit({
 
             if (deleteFromServer) {
                 const deleted = await fetchWrapper(`/api/media/${media.id}`, null, 'DELETE');
+                const res = await fetchDissociateMediaFromPage(media.id, originalPageId);
                 deleteMediaFromList(media.id);
             } else {
                 alert('Could not delete this media.');
