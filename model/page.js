@@ -11,8 +11,7 @@ import {
     updatePage,
 } from '../dao/page';
 import prisma from '../lib/prisma';
-import {getServeurImageMedia} from '../utils/utils-serveur-image';
-import {getMedia} from './media';
+import {getMedia, getMediaById} from './media';
 
 // helpers
 const getLastPosition = async category => {
@@ -175,7 +174,7 @@ export async function getPageBySlug(pageSlug, specificContext = '') {
             // we must pre-fetch bandeau
             if (page.bandeau_id) {
                 try {
-                    const bandeau = await getServeurImageMedia(page.bandeau_id);
+                    const bandeau = await getMediaById(page.bandeau_id);
                     page.bandeau = bandeau;
                 } catch (error) {
                     console.log('Error fetching bandeau', error);
