@@ -7,6 +7,7 @@ import PageEditCategory from './PageEditCategory';
 import {useRouter} from 'next/router';
 import BlockBandeau from './BlockBandeau';
 import BlockSource from './BlockSource';
+import {toMysqlFormat} from '../../../utils/utils';
 
 const PageEditorSidebar = ({
     updateCurrentPage,
@@ -41,6 +42,11 @@ const PageEditorSidebar = ({
 
     // others
     const permalien = pagePermalien.startsWith('/') ? pagePermalien : '/' + pagePermalien;
+
+    const setCreatedAt = e => {
+        console.log({val: new Date(e.target.value)});
+        updatePages({created_at: toMysqlFormat(new Date(e.target.value))});
+    };
 
     return (
         <div>
@@ -93,11 +99,19 @@ const PageEditorSidebar = ({
                 {/* Created at */}
                 {isEditing && (
                     <>
-                        <div className="flex items-center mb-2">
+                        <div className="flex flex-col mb-2">
                             <p className="mr-3 text-sm font-semibold" htmlFor="inputAuthor">
                                 Date de publication :{' '}
                             </p>
-                            <p className="text-sm">{created_at ? new Date(created_at).toLocaleString(locale) : ''}</p>
+                            {/* <p className="text-sm">{created_at ? new Date(created_at).toLocaleString(locale) : ''}</p> */}
+                            <div>
+                                <input
+                                    type="datetime-local"
+                                    className="px-1 border border-black rounded"
+                                    defaultValue={created_at ? new Date(created_at).toISOString().slice(0, -1) : null}
+                                    onChange={setCreatedAt}
+                                />
+                            </div>
                         </div>
 
                         <div className="flex items-center mb-2">
