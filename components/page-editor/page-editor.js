@@ -88,6 +88,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
     };
 
     const updatePages = (values = {}) => {
+        console.log({values});
         if (pages && pages.length) {
             setPages(
                 pages.map(page => {
@@ -345,6 +346,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
                         onChangeLanguage={onChangeLanguage}
                         notAllowedToSave={!canSave}
                         categories={categories}
+                        draft={currentPage.draft}
                     />
                 </div>
             </div>

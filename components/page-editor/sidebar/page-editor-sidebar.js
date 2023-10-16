@@ -33,6 +33,7 @@ const PageEditorSidebar = ({
     updatePages,
     categories,
     notAllowedToSave,
+    draft,
 }) => {
     // hooks
     const {locale} = useRouter();
@@ -46,6 +47,12 @@ const PageEditorSidebar = ({
     const setCreatedAt = e => {
         console.log({val: new Date(e.target.value)});
         updatePages({created_at: toMysqlFormat(new Date(e.target.value))});
+    };
+
+    const setDraft = e => {
+        const newDraft = e.target.checked;
+        console.log({draft, newDraft});
+        updatePages({draft: newDraft});
     };
 
     return (
@@ -141,6 +148,17 @@ const PageEditorSidebar = ({
                             </button>
                         </div>
                     )}
+                </div>
+                <div className="mt-4">
+                    <div className="flex flex-row gap-1">
+                        <input
+                            id="isdraft"
+                            type="checkbox"
+                            defaultChecked={draft != undefined ? draft : true}
+                            onClick={setDraft}
+                        />
+                        <label htmlFor="isdraft">Brouillon</label>
+                    </div>
                 </div>
                 {/* Publier */}
                 <div className="flex justify-end">

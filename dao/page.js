@@ -199,6 +199,7 @@ export async function updatePage({
     bandeau_id,
     position,
     source,
+    draft,
 }) {
     const updatableFields = {
         pageName,
@@ -213,6 +214,7 @@ export async function updatePage({
         bandeau_id,
         position,
         source,
+        draft,
     };
 
     const valid_fields = filterObj(updatableFields, (key, val) => val !== undefined);
