@@ -16,6 +16,8 @@ import {getMediaLink, getServerImageEndpoint, getServeurImageMedia, isVideo} fro
 import {getMediaById, getSingleMedia} from '../model/media';
 import LastNews from '../components/last-news';
 import PageContent from '../components/page-template/commons/PageContent';
+import {fetchWrapper} from '../utils/utils';
+import {useState} from 'react';
 
 // styles
 const bannerStyles = {
@@ -26,6 +28,21 @@ export default function Home({menu, page, articles}) {
     const router = useRouter();
     const {locale} = router;
 
+    const [msg, setMsg] = useState(null);
+
+    const newsLetterSubscribe = async e => {
+        e.preventDefault();
+        const {email} = e.target;
+        let query = await fetchWrapper(`/api/adherent/subscribe?email=${email.value}`, null, 'GET');
+
+        if (query.ok) {
+            setMsg({message: 'Vous êtes maintenant inscrit'});
+            e.target.reset();
+            setTimeout(() => {
+                setMsg(null);
+            }, 2000);
+        }
+    };
     return (
         <div className={styles.container}>
             <Head>
@@ -80,6 +97,16 @@ export default function Home({menu, page, articles}) {
                         <AppHome currentLanguage={locale} />
                     </>
                 )}
+                <div className="flex flex-col items-center gap-2 my-2">
+                    <div>Restez informé en recevant nos dernières actualitées par e-mail</div>
+                    {msg && <div className="text-green-600">{msg.message}</div>}
+                    <form className="flex flex-col w-1/2 gap-1" onSubmit={newsLetterSubscribe}>
+                        <input type="text" name="email" placeholder="email" className="px-2 py-1 rounded-md" />
+                        <button type="validate" className="px-2 py-1 text-white rounded-md bg-pred">
+                            S'inscrire
+                        </button>
+                    </form>
+                </div>
                 <LastNews articles={articles} />
             </div>
         </div>

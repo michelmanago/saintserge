@@ -83,6 +83,7 @@ model pagecontent {
     bandeau_id    Int?
     position      Int?
     source        String?   @db.VarChar(8000)
+    draft         Boolean   @default(false)
 
     works             works[]
     medias            media_page[]
@@ -119,4 +120,13 @@ model works {
     page   pagecontent @relation(fields: [pageId], references: [id])
 
     @@index([pageId])
+}
+
+model adherent {
+    id      Int     @id @default(autoincrement())
+    nom     String? @db.VarChar(100)
+    prenom  String? @db.VarChar(100)
+    email   String  @unique @db.VarChar(100)
+    postale String? @db.VarChar(500)
+    news    Boolean @default(true)
 }

@@ -193,11 +193,13 @@ export async function updatePage({
     page,
     language,
     author,
+    created_at,
     last_modified,
     blocks,
     bandeau_id,
     position,
     source,
+    draft,
 }) {
     const updatableFields = {
         pageName,
@@ -206,11 +208,13 @@ export async function updatePage({
         page,
         language,
         author,
+        created_at,
         last_modified,
         blocks,
         bandeau_id,
         position,
         source,
+        draft,
     };
 
     const valid_fields = filterObj(updatableFields, (key, val) => val !== undefined);
@@ -227,7 +231,7 @@ export async function updatePage({
 
         fieldsKey.map((key, index) => {
             let val = updatableFields[key];
-            if (key === 'last_modified') val = new Date(val);
+            if (key === 'last_modified' || key === 'created_at') val = new Date(val);
             if (key === 'blocks' && typeof val !== 'string') {
                 val = JSON.stringify(val);
             }

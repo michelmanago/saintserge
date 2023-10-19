@@ -88,6 +88,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
     };
 
     const updatePages = (values = {}) => {
+        console.log({values});
         if (pages && pages.length) {
             setPages(
                 pages.map(page => {
@@ -254,7 +255,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
 
     // others
     const languagesLists = locales.map(_locale => ({title: _locale.toUpperCase(), value: _locale}));
-    const originalPageId = editedPages ? editedPages[0].original_id : null;
+    const originalPageId = editedPages ? editedPages[0].id : null;
 
     // setters
     const setSlug = value =>
@@ -345,6 +346,7 @@ export default function PageEditor({onFormSubmitted, editedPages, categories, de
                         onChangeLanguage={onChangeLanguage}
                         notAllowedToSave={!canSave}
                         categories={categories}
+                        draft={currentPage.draft}
                     />
                 </div>
             </div>
