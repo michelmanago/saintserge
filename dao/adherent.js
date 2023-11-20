@@ -71,14 +71,14 @@ function formatParam(params) {
     return paramFormat;
 }
 
-export async function searchPaging(params /* skip = 0, take = 100 */) {
+export async function searchAdherenPaging(params, skip = 0, take = 100) {
     const paramFormat = formatParam(params);
     const count = await prisma.adherent.count({
         where: paramFormat,
     });
     const results = await prisma.adherent.findMany({
-        // skip,
-        // take,
+        skip,
+        take,
         where: paramFormat,
         orderBy: [
             {
@@ -88,12 +88,12 @@ export async function searchPaging(params /* skip = 0, take = 100 */) {
     });
 
     return {
-        // paging: {
-        //     skip,
-        //     take,
-        //     count,
-        //     totalPage: Math.ceil(count / take),
-        // },
+        paging: {
+            skip,
+            take,
+            count,
+            totalPage: Math.ceil(count / take),
+        },
         adherents: JSON.parse(JSON.stringify(results)),
     };
 
