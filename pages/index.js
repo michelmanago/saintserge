@@ -97,17 +97,18 @@ export default function Home({menu, page, articles}) {
                         <AppHome currentLanguage={locale} />
                     </>
                 )}
-                <div className="flex flex-col items-center gap-2 my-2">
-                    <div>Restez informé en recevant nos dernières actualitées par e-mail</div>
+
+                <LastNews articles={articles} />
+                <div className="container flex flex-col items-center max-w-screen-xl gap-2 py-2 bg-white sm:mx-auto">
+                    <div>S'inscrire à la newsletter</div>
                     {msg && <div className="text-green-600">{msg.message}</div>}
                     <form className="flex flex-col w-1/2 gap-1" onSubmit={newsLetterSubscribe}>
-                        <input type="text" name="email" placeholder="email" className="px-2 py-1 rounded-md" />
+                        <input type="text" name="email" placeholder="email" className="px-2 py-1 border rounded-md" />
                         <button type="validate" className="px-2 py-1 text-white rounded-md bg-pred">
                             S'inscrire
                         </button>
                     </form>
                 </div>
-                <LastNews articles={articles} />
             </div>
         </div>
     );

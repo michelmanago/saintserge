@@ -58,33 +58,6 @@ export default function Header({menu, translations, currentLanguage}) {
             {/* Top bar */}
             <Nav menu={menu} translations={translations} />
 
-            {session && (
-                <div className="flex flex-row items-center justify-center">
-                    {session.user.image && (
-                        <span style={{backgroundImage: `url(${session.user.image})`}} className={''} />
-                    )}
-                    <span className={'mr-2'}>
-                        <small>Signed in as</small>
-                        <br />
-
-                        <strong>{session.userBase ? session.userBase.username : session.user.name}</strong>
-                    </span>
-                    <Link href={`/api/auth/signout`}>
-                        <a
-                            className={
-                                'mx-1 text-white border border-transparent rounded-md bg-pred hover:bg-pred-dark px-2 py-2'
-                            }
-                            onClick={e => {
-                                e.preventDefault();
-                                signOut();
-                            }}
-                        >
-                            Sign out
-                        </a>
-                    </Link>
-                </div>
-            )}
-
             {/* Logo */}
             {/* <img className={"my-3 " + styles.logo} src="/logo.svg" alt="logo"/> */}
         </header>
