@@ -1,32 +1,28 @@
 // libs
-import Head from "next/head"
+import Head from 'next/head';
 import {getSession, useSession} from 'next-auth/client';
 
 // model
-import { getMenu } from "../../../model/menu"
-import { getAllPages } from "../../../model/page"
-import { getAllCategories } from "../../../model/category";
+import {getMenu} from '../../../model/menu';
+import {getAllPages} from '../../../model/page';
+import {getAllCategories} from '../../../model/category';
 
 // components
-import Header from "../../../components/header/header"
-import ListPage from "../../../components/list-page/ListPage"
-
+import Header from '../../../components/header/header';
+import ListPage from '../../../components/list-page/ListPage';
 
 export default function Page({menu, pages, categories}) {
     return (
-        <>
-
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Administrer le site</title>
-                
             </Head>
 
-            {menu && <Header menu={menu.data}/>}
+            {menu && <Header menu={menu.data} />}
 
-            <ListPage pages={pages} categories={categories}/>
-
-        </>
-    )
+            <ListPage pages={pages} categories={categories} />
+        </div>
+    );
 }
 
 export async function getServerSideProps(context) {
@@ -41,17 +37,18 @@ export async function getServerSideProps(context) {
             },
         };
     }
-    
-    const category = context.query.cat
 
-    const menu = await getMenu(context.locale)
-    const pages = await getAllPages(context.defaultLocale, category ? category : null)
-    const categories = await getAllCategories()
-  
-    return {props: {
-      menu: menu,
-      pages: pages,
-      categories,
-    }}
+    const category = context.query.cat;
 
+    const menu = await getMenu(context.locale);
+    const pages = await getAllPages(context.defaultLocale, category ? category : null);
+    const categories = await getAllCategories();
+
+    return {
+        props: {
+            menu: menu,
+            pages: pages,
+            categories,
+        },
+    };
 }

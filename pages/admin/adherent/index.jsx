@@ -8,7 +8,7 @@ import Head from 'next/head';
 export default function AdherentAdminList({menu, adherents}) {
     const [adherentsState, setAdherentsState] = useState(adherents.adherents);
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Liste des adhérents</title>
             </Head>
@@ -31,7 +31,7 @@ export default function AdherentAdminList({menu, adherents}) {
                     ))}
                 </div>
             </main>
-        </>
+        </div>
     );
 }
 

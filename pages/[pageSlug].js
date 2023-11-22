@@ -52,7 +52,7 @@ export default function DynPage({menu, page}) {
     // hooks
 
     return (
-        <div>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>{page && page.pageName}</title>
                 <meta httpEquiv="content-language" content={`${locale}-${locale.toUpperCase()}`} />

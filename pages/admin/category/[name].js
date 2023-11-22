@@ -144,14 +144,13 @@ export default function AdminCategory({pages, menu, categoryName}) {
     }
 
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Admin - Catégories - {categoryName}</title>
-                
             </Head>
             {menu && <Header menu={menu.data} />}
             <main className="max-w-screen-xl p-4 bg-white md:mx-auto">{pageContent}</main>
-        </>
+        </div>
     );
 }
 

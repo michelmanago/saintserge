@@ -11,7 +11,7 @@ export default function Articles({menu, articles}) {
     const router = useRouter();
     const {locale} = router;
     return (
-        <div>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             {/* Header */}
             {menu && <Header menu={menu.data} currentLanguage={locale} />}
             <main className="container max-w-screen-xl px-5 pt-4 bg-white sm:px-48 sm:mx-auto">

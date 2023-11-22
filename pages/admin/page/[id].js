@@ -88,7 +88,7 @@ export default function PageEditorUpdate({menu, pageTranslations, categories}) {
     };
 
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Edition de page - {pageTranslations[0] && pageTranslations[0].pageName}</title>
             </Head>
@@ -99,7 +99,7 @@ export default function PageEditorUpdate({menu, pageTranslations, categories}) {
                     <PageEditor editedPages={pageTranslations} onFormSubmitted={onSubmit} categories={categories} />
                 )}
             </main>
-        </>
+        </div>
     );
 }
 

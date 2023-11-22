@@ -18,16 +18,29 @@ import LastNews from '../components/last-news';
 import PageContent from '../components/page-template/commons/PageContent';
 import {fetchWrapper} from '../utils/utils';
 import {useState} from 'react';
+import Popup from 'reactjs-popup';
+import IconClose from '../components/icons/IconClose';
 
 // styles
 const bannerStyles = {
     height: 360,
 };
 
+// styles
+const contentStyles = {
+    width: '50%',
+    height: '20%',
+    overflow: 'auto',
+    borderRadius: '.2em',
+    background: '#fff',
+    boxShadow: '0 0 2px rgba(0, 0, 0, .2)',
+};
+
 export default function Home({menu, page, articles}) {
     const router = useRouter();
     const {locale} = router;
 
+    const [isOpen, setIsOpen] = useState(false);
     const [msg, setMsg] = useState(null);
 
     const newsLetterSubscribe = async e => {
@@ -43,8 +56,10 @@ export default function Home({menu, page, articles}) {
             }, 2000);
         }
     };
+
     return (
-        <div className={styles.container}>
+        // <div className={styles.container}>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Colline Saint Serge</title>
             </Head>
@@ -100,15 +115,40 @@ export default function Home({menu, page, articles}) {
 
                 <LastNews articles={articles} />
                 <div className="container flex flex-col items-center max-w-screen-xl gap-2 py-2 bg-white sm:mx-auto">
-                    <div>S'inscrire à la newsletter</div>
-                    {msg && <div className="text-green-600">{msg.message}</div>}
-                    <form className="flex flex-col w-1/2 gap-1" onSubmit={newsLetterSubscribe}>
-                        <input type="text" name="email" placeholder="email" className="px-2 py-1 border rounded-md" />
-                        <button type="validate" className="px-2 py-1 text-white rounded-md bg-pred">
-                            S'inscrire
-                        </button>
-                    </form>
+                    <button className="px-2 py-1 text-white rounded-md bg-pred" onClick={() => setIsOpen(true)}>
+                        S'inscrire
+                    </button>
                 </div>
+
+                <Popup
+                    open={isOpen}
+                    onClick={() => setIsOpen(!isOpen)}
+                    contentStyle={contentStyles}
+                    onClose={() => setIsOpen(false)}
+                >
+                    <div className="flex flex-col items-center w-full gap-2 py-2 bg-white rounded">
+                        {/* Close */}
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="absolute text-gray-700 top-1 right-1 hover:text-gray-800"
+                        >
+                            <IconClose />
+                        </button>
+                        <div>S'inscrire à la newsletter</div>
+                        {msg && <div className="text-green-600">{msg.message}</div>}
+                        <form className="flex flex-col w-1/2 gap-1" onSubmit={newsLetterSubscribe}>
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="email"
+                                className="px-2 py-1 border rounded-md"
+                            />
+                            <button type="validate" className="px-2 py-1 text-white rounded-md bg-pred">
+                                S'inscrire
+                            </button>
+                        </form>
+                    </div>
+                </Popup>
             </div>
         </div>
     );
