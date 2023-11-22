@@ -6,7 +6,7 @@ import {getMenu} from '../../model/menu';
 
 export default function Login({menu}) {
     return (
-        <div>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             {menu && <Header menu={menu.data} />}
             <SignupComp />
         </div>

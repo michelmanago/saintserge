@@ -25,7 +25,7 @@ export default function AdminIndex({menu, homePage}) {
     const [showResults, setShowResults] = useState(false);
     console.log({session});
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Administrer le site</title>
             </Head>
@@ -152,7 +152,7 @@ export default function AdminIndex({menu, homePage}) {
                     </div>
                 )}
             </main>
-        </>
+        </div>
     );
 }
 

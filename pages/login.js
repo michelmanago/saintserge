@@ -4,7 +4,7 @@ import Header from '../components/header/header';
 import LoginComp from '../components/login';
 import React, {useEffect} from 'react';
 import Head from 'next/head';
-import { getMenu } from '../model/menu';
+import {getMenu} from '../model/menu';
 
 export default function Login({providerList, menu}) {
     const [session] = useSession();
@@ -15,7 +15,7 @@ export default function Login({providerList, menu}) {
         else if (session) router.push('/');
     });
     return (
-        <div>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Header menu={menu.data} />
             <Head>
                 <title>Login</title>

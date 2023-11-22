@@ -1,73 +1,63 @@
 // models
-import { getMenu } from "../../../model/menu"
+import {getMenu} from '../../../model/menu';
 
 // libs
-import Head from "next/head"
-
+import Head from 'next/head';
 
 // components
-import Header from "../../../components/header/header"
-import UserEditor from "../../../components/user-edtior/UserEditor"
+import Header from '../../../components/header/header';
+import UserEditor from '../../../components/user-edtior/UserEditor';
 
+export default function PageCreateUser({menu}) {
+    // methods
+    const onCreateUser = async form => {
+        const response = await fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: form.name,
+                email: form.email,
+                password: form.password,
+                provider: 'custom',
+                role: form.role,
+            }),
+        });
 
-export default function PageCreateUser({menu}){
+        console.log(response);
 
-        // methods
-        const onCreateUser = async form => {
-
-            const response = await fetch('/api/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: form.name,
-                    email: form.email,
-                    password: form.password,
-                    provider: 'custom',
-                    role: form.role,
-                }),
-            });
-    
-            console.log(response)
-    
-            if (response.status === 200) {
-                return true
-            } else {
-                return false
-            }
-    
+        if (response.status === 200) {
+            return true;
+        } else {
+            return false;
         }
+    };
 
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Creation d'utilisateur</title>
-                
             </Head>
-            {menu && <Header menu={menu.data}/>}
+            {menu && <Header menu={menu.data} />}
             <main className="max-w-screen-xl px-5 pt-5 mx-auto bg-white">
-
                 <UserEditor
                     onSubmit={onCreateUser}
-                    pageTitle={"Ajouter un utilisateur"}
-                    submitLabel={"Ajouter un utilisateur"}
+                    pageTitle={'Ajouter un utilisateur'}
+                    submitLabel={'Ajouter un utilisateur'}
                     user={null}
                 />
-
             </main>
-        </>
-    )
-
+        </div>
+    );
 }
-
 
 export async function getServerSideProps(context) {
+    const menu = await getMenu(context.locale);
 
-    const menu = await getMenu(context.locale)
-  
-    return {props: {
-      menu: menu
-    }}
+    return {
+        props: {
+            menu: menu,
+        },
+    };
 }
-    

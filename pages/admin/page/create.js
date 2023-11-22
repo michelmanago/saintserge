@@ -68,7 +68,7 @@ export default function PageEditorCreate({menu, categories, defaultType}) {
     };
 
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Creation de page</title>
             </Head>
@@ -76,7 +76,7 @@ export default function PageEditorCreate({menu, categories, defaultType}) {
             <main className="">
                 <PageEditor onFormSubmitted={onSubmit} categories={categories} defaultType={defaultType} />
             </main>
-        </>
+        </div>
     );
 }
 

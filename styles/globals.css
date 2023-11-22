@@ -204,6 +204,10 @@ button {
     background: transparent;
 }
 
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
 /* Image Popup*/
 .image-popup-content {
     margin: auto;

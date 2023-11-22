@@ -13,6 +13,18 @@ import styles from './nav.module.css';
 // utils
 import {getMenuHref} from '../../utils/utils';
 import {signOut, useSession} from 'next-auth/client';
+import Popup from 'reactjs-popup';
+import IconClose from '../icons/IconClose';
+
+// styles
+const contentStyles = {
+    width: '50%',
+    height: '20%',
+    overflow: 'auto',
+    borderRadius: '.2em',
+    background: '#fff',
+    boxShadow: '0 0 2px rgba(0, 0, 0, .2)',
+};
 
 const NavLink = ({item}) => {
     let has_children = !!item.subMenu;
@@ -85,6 +97,23 @@ const Nav = ({menu = [], translations}) => {
         setNeedLanguages(!window.location.pathname.startsWith('/admin'));
     }, []);
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [msg, setMsg] = useState(null);
+
+    const newsLetterSubscribe = async e => {
+        e.preventDefault();
+        const {email} = e.target;
+        let query = await fetchWrapper(`/api/adherent/subscribe?email=${email.value}`, null, 'GET');
+
+        if (query.ok) {
+            setMsg({message: 'Vous êtes maintenant inscrit'});
+            e.target.reset();
+            setTimeout(() => {
+                setMsg(null);
+            }, 2000);
+        }
+    };
+
     return (
         <nav ref={refContainer} className="flex items-center navbar bg-pred">
             <button className="navbar-toggle">
@@ -92,7 +121,8 @@ const Nav = ({menu = [], translations}) => {
                     <path d="M128 277.333h768v86h-768v-86z m0 298v-84h768v84h-768z m0 214v-86h768v86h-768z" />
                 </svg>
             </button>
-            <div className={styles.navContainer}>
+            {/* <div className={styles.navContainer}> */}
+            <div className="flex flex-row justify-between">
                 <ul className="nav">
                     {menu.map((item, index) => (
                         <NavLink key={'item-' + index} item={item} />
@@ -102,15 +132,44 @@ const Nav = ({menu = [], translations}) => {
                 <div className="flex flex-row items-center">
                     {!session && (
                         <>
-                            {/* <Link href={`/inscription`}>
-                                <a
-                                    className={
-                                        'mx-1 text-white border border-transparent rounded-md bg-pgold hover:bg-pblue-dark px-2 py-2'
-                                    }
-                                >
-                                    Inscription
-                                </a>
-                            </Link> */}
+                            <div
+                                className={
+                                    'mx-1 text-white border border-transparent rounded-md bg-pgold hover:bg-pblue-dark px-2 py-2 cursor-pointer'
+                                }
+                                onClick={() => setIsOpen(true)}
+                            >
+                                Inscription
+                            </div>
+                            <Popup
+                                open={isOpen}
+                                onClick={() => setIsOpen(!isOpen)}
+                                contentStyle={contentStyles}
+                                onClose={() => setIsOpen(false)}
+                            >
+                                <div className="flex flex-col items-center w-full gap-2 py-2 bg-white rounded">
+                                    {/* Close */}
+                                    <button
+                                        onClick={() => setIsOpen(false)}
+                                        className="absolute text-gray-700 top-1 right-1 hover:text-gray-800"
+                                    >
+                                        <IconClose />
+                                    </button>
+                                    <div>S'inscrire à la newsletter</div>
+                                    {msg && <div className="text-green-600">{msg.message}</div>}
+                                    <form className="flex flex-col w-1/2 gap-1" onSubmit={newsLetterSubscribe}>
+                                        <input
+                                            type="text"
+                                            name="email"
+                                            placeholder="email"
+                                            className="px-2 py-1 border rounded-md"
+                                        />
+                                        <button type="validate" className="px-2 py-1 text-white rounded-md bg-pred">
+                                            S'inscrire
+                                        </button>
+                                    </form>
+                                </div>
+                            </Popup>
+
                             <Link href={`/login`}>
                                 <a
                                     className={

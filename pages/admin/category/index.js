@@ -15,7 +15,7 @@ import {getAllCategories} from '../../../model/category';
 
 export default function AdminCategory({menu, categories}) {
     return (
-        <>
+        <div className="container max-w-screen-xl sm:mx-auto bg-pwhite">
             <Head>
                 <title>Admin - Catégories</title>
             </Head>
@@ -38,7 +38,7 @@ export default function AdminCategory({menu, categories}) {
                     )}
                 </ul>
             </main>
-        </>
+        </div>
     );
 }
 
